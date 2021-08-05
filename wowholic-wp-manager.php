@@ -7,3 +7,5 @@
 * Author: Wowholic
 * Author URI: https://wowholic.com
 **/
+
+include 'includes/cleanup.php';
