@@ -10,3 +10,9 @@
 
 include 'includes/cleanup.php';
 include 'includes/redirects.php';
+
+/**
+ * Disable Theme Editor and Plugin Editor
+ */
+define( 'DISALLOW_FILE_EDIT', true );
+define( 'DISALLOW_FILE_MODS', true );
