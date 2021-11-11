@@ -32,7 +32,7 @@ function wwm_attach_page() {
 	];
 
 	Container::make( 'theme_options', __( 'Wowholic' ) )
-	         ->set_icon( $container_icon )
+	         ->set_icon( 'none' )
 	         ->where( 'current_user_capability', '=', 'manage_options' )
 	         ->add_tab( __( 'General' ), $general_fields )
 	         ->add_tab( __( 'Redirects' ), $redirects_fields )
