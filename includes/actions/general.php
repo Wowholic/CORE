@@ -71,3 +71,18 @@ if ( carbon_get_theme_option( 'wwm_disable_comments' ) ) {
 		}
 	} );
 }
+
+/**
+ * Enable Theme Options
+ */
+if ( carbon_get_theme_option( 'wwm_enable_theme_options' ) ) {
+	add_action( 'acf/init', function () {
+		if ( function_exists( 'acf_add_options_page' ) ) {
+			acf_add_options_page( array(
+				'page_title' => __( 'Theme Options' ),
+				'menu_title' => __( 'Theme Options' ),
+				'menu_slug'  => 'theme-options',
+			) );
+		}
+	} );
+}

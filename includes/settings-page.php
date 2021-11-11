@@ -8,10 +8,10 @@ function wwm_attach_page() {
 	$general_fields = [
 		Field::make( 'checkbox', 'wwm_cleanup_wp_defaults', __( 'Cleanup WordPress defaults' ) )->set_default_value( true ),
 		Field::make( 'checkbox', 'wwm_disable_file_edit', __( 'Disable Theme & Plugin Editors' ) )->set_default_value( true ),
+		Field::make( 'checkbox', 'wwm_enable_theme_options', __( 'Enable ACF Theme Options' ) )->set_default_value( true ),
 		Field::make( 'checkbox', 'wwm_disable_default_post_type', __( 'Disable default Post type' ) ),
 		Field::make( 'checkbox', 'wwm_disable_comments', __( 'Disable comments' ) ),
 		Field::make( 'checkbox', 'wwm_hide_acf_menu', __( 'Hide ACF menu for non-admins' ) ),
-
 	];
 
 	$redirects_fields = [
