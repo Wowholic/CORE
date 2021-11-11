@@ -25,18 +25,21 @@ function wwm_attach_page() {
 		Field::make( 'checkbox', 'wwm_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 
-	$acf_fields = [
-		Field::make( 'checkbox', 'wwm_enable_theme_options', __( 'Enable ACF Theme Options' ) )->set_default_value( true ),
-		Field::make( 'checkbox', 'wwm_enable_shortcodes', __( 'Enable shortcodes in Excerpts, Text and Textarea fields' ) ),
-		Field::make( 'checkbox', 'wwm_hide_acf_menu', __( 'Hide ACF menu for non-admins' ) ),
-	];
+	$container = Container::make( 'theme_options', __( 'Wowholic' ) )
+	                      ->set_icon( 'none' ) // Or $container_icon
+	                      ->where( 'current_user_capability', '=', 'manage_options' )
+	                      ->add_tab( __( 'General' ), $general_fields )
+	                      ->add_tab( __( 'Redirects' ), $redirects_fields );
 
-	Container::make( 'theme_options', __( 'Wowholic' ) )
-	         ->set_icon( 'none' )
-	         ->where( 'current_user_capability', '=', 'manage_options' )
-	         ->add_tab( __( 'General' ), $general_fields )
-	         ->add_tab( __( 'Redirects' ), $redirects_fields )
-	         ->add_tab( __( 'ACF' ), $acf_fields );
+	if ( class_exists( 'acf' ) ) {
+		$acf_fields = [
+			Field::make( 'checkbox', 'wwm_enable_theme_options', __( 'Enable ACF Theme Options' ) )->set_default_value( true ),
+			Field::make( 'checkbox', 'wwm_enable_shortcodes', __( 'Enable shortcodes in Excerpts, Text and Textarea fields' ) ),
+			Field::make( 'checkbox', 'wwm_hide_acf_menu', __( 'Hide ACF menu for non-admins' ) ),
+		];
+
+		$container->add_tab( __( 'ACF' ), $acf_fields );
+	}
 }
 
 add_action( 'carbon_fields_fields_registered', 'wwm_carbon_fields_available' );
