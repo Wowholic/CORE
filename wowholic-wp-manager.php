@@ -17,6 +17,4 @@ define( 'WWM_LOCATION_URL', plugins_url( '', __FILE__ ) );
 define( 'Carbon_Fields\URL', plugin_dir_url( __FILE__ ) . 'vendor/htmlburger/carbon-fields/' );
 
 include 'includes/boot.php';
-include 'includes/cleanup.php';
 include 'includes/settings-page.php';
-include 'includes/redirects.php';
