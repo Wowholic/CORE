@@ -86,3 +86,12 @@ if ( carbon_get_theme_option( 'wwm_enable_theme_options' ) ) {
 		}
 	} );
 }
+
+/**
+ * Allow shortcodes in excerpts, textareas and text fields from ACF
+ */
+if ( carbon_get_theme_option( 'wwm_enable_shortcodes' ) ) {
+	add_filter( 'get_the_excerpt', 'do_shortcode' );
+	add_filter( 'acf/format_value/type=textarea', 'do_shortcode' );
+	add_filter( 'acf/format_value/type=text', 'do_shortcode' );
+}

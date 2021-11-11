@@ -12,6 +12,7 @@ function wwm_attach_page() {
 		Field::make( 'checkbox', 'wwm_disable_default_post_type', __( 'Disable default Post type' ) ),
 		Field::make( 'checkbox', 'wwm_disable_comments', __( 'Disable comments' ) ),
 		Field::make( 'checkbox', 'wwm_hide_acf_menu', __( 'Hide ACF menu for non-admins' ) ),
+		Field::make( 'checkbox', 'wwm_enable_shortcodes', __( 'Enable shortcodes in Excerpts, Text and Textarea fields' ) ),
 	];
 
 	$redirects_fields = [
