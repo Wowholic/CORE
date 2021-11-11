@@ -10,6 +10,13 @@ if ( carbon_get_theme_option( 'wwm_disable_default_post_type' ) ) {
 }
 
 /**
+ * Disable theme and plugin editors
+ */
+if ( carbon_get_theme_option( 'wwm_disable_file_edit' ) ) {
+	define( 'DISALLOW_FILE_EDIT', true );
+}
+
+/**
  * Hide ACF menu for non-admins
  */
 if ( carbon_get_theme_option( 'wwm_hide_acf_menu' ) ) {
