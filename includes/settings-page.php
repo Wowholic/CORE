@@ -27,8 +27,8 @@ function wwm_attach_page() {
 
 	$acf_fields = [
 		Field::make( 'checkbox', 'wwm_enable_theme_options', __( 'Enable ACF Theme Options' ) )->set_default_value( true ),
-		Field::make( 'checkbox', 'wwm_hide_acf_menu', __( 'Hide ACF menu for non-admins' ) ),
 		Field::make( 'checkbox', 'wwm_enable_shortcodes', __( 'Enable shortcodes in Excerpts, Text and Textarea fields' ) ),
+		Field::make( 'checkbox', 'wwm_hide_acf_menu', __( 'Hide ACF menu for non-admins' ) ),
 	];
 
 	Container::make( 'theme_options', __( 'Wowholic' ) )
