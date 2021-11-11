@@ -22,6 +22,7 @@ function wwm_attach_page() {
 			     'date'     => 'Date archives',
 			     'author'   => 'Author pages',
 		     ) ),
+		Field::make( 'checkbox', 'wwm_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 
 	Container::make( 'theme_options', __( 'Wowholic' ) )
