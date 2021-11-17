@@ -7,6 +7,7 @@
 if ( carbon_get_theme_option( 'wwm_show_dev_grid' ) ) {
 	function wwm_add_dev_grid_css() {
 		$width   = carbon_get_theme_option( 'wwm_dev_grid_width' );
+		$padding   = carbon_get_theme_option( 'wwm_dev_grid_padding' );
 		$columns = carbon_get_theme_option( 'wwm_dev_grid_columns' );
 		$gutter  = carbon_get_theme_option( 'wwm_dev_grid_gutter' );
 		$color   = carbon_get_theme_option( 'wwm_dev_grid_color' );
@@ -65,6 +66,7 @@ if ( carbon_get_theme_option( 'wwm_show_dev_grid' ) ) {
             .wwm-dev-grid .wwm-dev-grid_container {
                 max-width: <?php echo $width; ?>px;
                 margin: 0 auto;
+                padding: 0 <?php echo $padding; ?>px;
             }
 
             .wwm-dev-grid .wwm-dev-grid_row {
