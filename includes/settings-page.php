@@ -60,12 +60,42 @@ function wwm_attach_page() {
 		     ->set_width( 20 ),
 	];
 
+	$tinymce_header_template = '
+	    <% if (title) { %>
+	        <%- title %>
+	    <% } %>
+	';
+	$tinymce_fields          = [
+		Field::make( 'complex', 'wwm_tinymce_extra_styles', __( 'TinyMCE extra styles' ) )
+		     ->setup_labels( [
+			     'plural_name'   => 'Styles',
+			     'singular_name' => 'Style',
+		     ] )
+		     ->add_fields( [
+			     Field::make( 'text', 'title', __( 'Style Title' ) ),
+			     Field::make( 'complex', 'options', __( 'Options' ) )
+			          ->setup_labels( [
+				          'plural_name'   => 'Options',
+				          'singular_name' => 'Option',
+			          ] )
+			          ->add_fields( [
+				          Field::make( 'text', 'title', __( 'Option Title' ) ),
+				          Field::make( 'text', 'classes', __( 'Option Classes' ) ),
+			          ] )
+			          ->set_header_template( $tinymce_header_template )
+			          ->set_collapsed( true ),
+		     ] )
+		     ->set_header_template( $tinymce_header_template )
+		     ->set_collapsed( true ),
+	];
+
 	$container = Container::make( 'theme_options', __( 'Wowholic' ) )
 	                      ->set_icon( 'none' ) // Or $container_icon
 	                      ->where( 'current_user_capability', '=', 'manage_options' )
 	                      ->add_tab( __( 'General' ), $general_fields )
 	                      ->add_tab( __( 'Redirects' ), $redirects_fields )
-	                      ->add_tab( __( 'Grid' ), $dev_grid_fields );
+	                      ->add_tab( __( 'Grid' ), $dev_grid_fields )
+	                      ->add_tab( __( 'TinyMCE' ), $tinymce_fields );
 
 	if ( class_exists( 'acf' ) ) {
 		$acf_fields = [
