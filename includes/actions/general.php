@@ -95,3 +95,16 @@ if ( carbon_get_theme_option( 'wwm_enable_shortcodes' ) ) {
 	add_filter( 'acf/format_value/type=textarea', 'do_shortcode' );
 	add_filter( 'acf/format_value/type=text', 'do_shortcode' );
 }
+
+/**
+ * Change upload size limit
+ */
+if ( carbon_get_theme_option( 'wwm_upload_size_limit' ) ) {
+	add_filter( 'upload_size_limit', 'wwm_upload_size_limit' );
+	function wwm_upload_size_limit() {
+		$size_in_bytes = carbon_get_theme_option( 'wwm_upload_size_limit' );
+		$size_in_mb    = $size_in_bytes * 1024 * 1024;
+
+		return $size_in_mb;
+	}
+}
