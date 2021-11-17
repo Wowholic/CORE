@@ -17,16 +17,6 @@ if ( carbon_get_theme_option( 'wwm_disable_file_edit' ) ) {
 }
 
 /**
- * Hide ACF menu for non-admins
- */
-if ( carbon_get_theme_option( 'wwm_hide_acf_menu' ) ) {
-	add_filter( 'acf/settings/show_admin', 'wwm_custom_acf_show_admin' );
-	function wwm_custom_acf_show_admin( $show ): bool {
-		return current_user_can( 'manage_options' );
-	}
-}
-
-/**
  * Disable comments
  */
 if ( carbon_get_theme_option( 'wwm_disable_comments' ) ) {
@@ -73,43 +63,6 @@ if ( carbon_get_theme_option( 'wwm_disable_comments' ) ) {
 }
 
 /**
- * Enable Theme Options
- */
-if ( carbon_get_theme_option( 'wwm_enable_theme_options' ) ) {
-	add_action( 'acf/init', function () {
-		if ( function_exists( 'acf_add_options_page' ) ) {
-			acf_add_options_page( array(
-				'page_title' => __( 'Theme Options' ),
-				'menu_title' => __( 'Theme Options' ),
-				'menu_slug'  => 'theme-options',
-			) );
-		}
-	} );
-}
-
-/**
- * Allow shortcodes in excerpts, textareas and text fields from ACF
- */
-if ( carbon_get_theme_option( 'wwm_enable_shortcodes' ) ) {
-	add_filter( 'get_the_excerpt', 'do_shortcode' );
-	add_filter( 'acf/format_value/type=textarea', 'do_shortcode' );
-	add_filter( 'acf/format_value/type=text', 'do_shortcode' );
-}
-
-/**
- * Change upload size limit
- */
-if ( carbon_get_theme_option( 'wwm_upload_size_limit' ) ) {
-	add_filter( 'upload_size_limit', 'wwm_upload_size_limit' );
-	function wwm_upload_size_limit() {
-		$size_in_bytes = carbon_get_theme_option( 'wwm_upload_size_limit' );
-		$size_in_mb    = $size_in_bytes * 1024 * 1024;
-
-		return $size_in_mb;
-	}
-}
-
-/**
  * Hide Widgets page
  */
 if ( carbon_get_theme_option( 'wwm_hide_widgets_page' ) ) {
@@ -128,44 +81,14 @@ if ( carbon_get_theme_option( 'wwm_hide_widgets_page' ) ) {
 }
 
 /**
- * Add extra styles to TinyMCE
+ * Change upload size limit
  */
-if ( carbon_get_theme_option( 'wwm_tinymce_extra_styles' ) ) {
-	add_filter( 'tiny_mce_before_init', function ( $settings ) {
-		$wwm_tinymce = carbon_get_theme_option( 'wwm_tinymce_extra_styles' );
-		$new_formats = [];
-		$idx         = 0;
+if ( carbon_get_theme_option( 'wwm_upload_size_limit' ) ) {
+	add_filter( 'upload_size_limit', 'wwm_upload_size_limit' );
+	function wwm_upload_size_limit() {
+		$size_in_bytes = carbon_get_theme_option( 'wwm_upload_size_limit' );
+		$size_in_mb    = $size_in_bytes * 1024 * 1024;
 
-		foreach ( $wwm_tinymce as $style ) {
-			$new_formats[ $idx ] = [
-				'title' => $style['title'],
-				'items' => [],
-			];
-
-			foreach ( $style['options'] as $option ) {
-				$new_formats[ $idx ]['items'][] = [
-					'title'   => $option['title'],
-					'inline'  => 'span',
-					'classes' => $option['classes'],
-				];
-			}
-
-			$idx ++;
-		}
-
-		if ( isset( $settings['style_formats'] ) ) {
-			$old_formats = json_decode( $settings['style_formats'] );
-			$new_formats = array_merge( $new_formats, $old_formats );
-		}
-
-		$settings['style_formats'] = json_encode( $new_formats );
-
-		return $settings;
-	} );
-
-	add_filter( 'mce_buttons_2', function ( $buttons ) {
-		array_unshift( $buttons, 'styleselect' );
-
-		return $buttons;
-	} );
+		return $size_in_mb;
+	}
 }
