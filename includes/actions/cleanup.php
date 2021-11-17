@@ -3,20 +3,17 @@
  * Clean up WordPress defaults
  */
 if ( carbon_get_theme_option( 'wwm_cleanup_wp_defaults' ) ) {
-	add_action( 'after_setup_theme', 'wwm_start_cleanup' );
-	function wwm_start_cleanup() {
-		// Launching operation cleanup.
-		add_action( 'init', 'wwm_cleanup_head' );
+	// Launching operation cleanup.
+	add_action( 'init', 'wwm_cleanup_head' );
 
-		// Remove WP version from RSS.
-		add_filter( 'the_generator', '__return_empty_string' );
+	// Remove WP version from RSS.
+	add_filter( 'the_generator', '__return_empty_string' );
 
-		// Remove pesky injected css for recent comments widget.
-		add_filter( 'wp_head', 'wwm_remove_wp_widget_recent_comments_style', 1 );
+	// Remove pesky injected css for recent comments widget.
+	add_filter( 'wp_head', 'wwm_remove_wp_widget_recent_comments_style', 1 );
 
-		// Clean up comment styles in the head.
-		add_action( 'wp_head', 'wwm_remove_recent_comments_style', 1 );
-	}
+	// Clean up comment styles in the head.
+	add_action( 'wp_head', 'wwm_remove_recent_comments_style', 1 );
 
 	function wwm_cleanup_head() {
 		// EditURI link.
