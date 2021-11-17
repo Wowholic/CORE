@@ -108,3 +108,21 @@ if ( carbon_get_theme_option( 'wwm_upload_size_limit' ) ) {
 		return $size_in_mb;
 	}
 }
+
+/**
+ * Hide Widgets page
+ */
+if ( carbon_get_theme_option( 'wwm_hide_widgets_page' ) ) {
+	add_action( 'admin_init', function () {
+		global $pagenow;
+
+		if ( $pagenow === 'widgets.php' ) {
+			wp_redirect( admin_url() );
+			exit;
+		}
+	} );
+
+	add_action( 'admin_menu', function () {
+		remove_submenu_page( 'themes.php', 'widgets.php' );
+	} );
+}

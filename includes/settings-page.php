@@ -14,6 +14,8 @@ function wwm_attach_page() {
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wwm_disable_default_post_type', __( 'Disable default Post type' ) ),
 		Field::make( 'checkbox', 'wwm_disable_comments', __( 'Disable comments' ) ),
+		Field::make( 'checkbox', 'wwm_hide_widgets_page', __( 'Hide Widgets page' ) )
+		     ->set_default_value( true ),
 		Field::make( 'select', 'wwm_upload_size_limit', __( 'Upload size limit' ) )
 		     ->set_options( [
 			     32   => '32MB',
