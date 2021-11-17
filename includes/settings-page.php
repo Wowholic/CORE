@@ -25,11 +25,29 @@ function wwm_attach_page() {
 		Field::make( 'checkbox', 'wwm_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 
+	$dev_grid_fields = [
+		Field::make( 'checkbox', 'wwm_show_dev_grid', __( 'Show Grid' ) ),
+		Field::make( 'text', 'wwm_dev_grid_width', __( 'Container width (px)' ) )
+		     ->set_default_value( '1440' )
+		     ->set_width(25),
+		Field::make( 'text', 'wwm_dev_grid_columns', __( 'Number of columns (px)' ) )
+		     ->set_default_value( '12' )
+		     ->set_width(25),
+		Field::make( 'text', 'wwm_dev_grid_gutter', __( 'Gutter (px)' ) )
+		     ->set_default_value( '32' )
+		     ->set_width(25),
+		Field::make( 'color', 'wwm_dev_grid_color', __( 'Column color' ) )
+		     ->set_alpha_enabled( true )
+		     ->set_default_value( '#FF0000' )
+		     ->set_width(25),
+	];
+
 	$container = Container::make( 'theme_options', __( 'Wowholic' ) )
 	                      ->set_icon( 'none' ) // Or $container_icon
 	                      ->where( 'current_user_capability', '=', 'manage_options' )
 	                      ->add_tab( __( 'General' ), $general_fields )
-	                      ->add_tab( __( 'Redirects' ), $redirects_fields );
+	                      ->add_tab( __( 'Redirects' ), $redirects_fields )
+	                      ->add_tab( __( 'Grid' ), $dev_grid_fields );
 
 	if ( class_exists( 'acf' ) ) {
 		$acf_fields = [
