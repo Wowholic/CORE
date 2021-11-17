@@ -2,20 +2,20 @@
 /**
  * Clean up WordPress defaults
  */
-if ( carbon_get_theme_option( 'wwm_cleanup_wp_defaults' ) ) {
+if ( carbon_get_theme_option( 'core_cleanup_wp_defaults' ) ) {
 	// Launching operation cleanup.
-	add_action( 'init', 'wwm_cleanup_head' );
+	add_action( 'init', 'core_cleanup_head' );
 
 	// Remove WP version from RSS.
 	add_filter( 'the_generator', '__return_empty_string' );
 
 	// Remove pesky injected css for recent comments widget.
-	add_filter( 'wp_head', 'wwm_remove_wp_widget_recent_comments_style', 1 );
+	add_filter( 'wp_head', 'core_remove_wp_widget_recent_comments_style', 1 );
 
 	// Clean up comment styles in the head.
-	add_action( 'wp_head', 'wwm_remove_recent_comments_style', 1 );
+	add_action( 'wp_head', 'core_remove_recent_comments_style', 1 );
 
-	function wwm_cleanup_head() {
+	function core_cleanup_head() {
 		// EditURI link.
 		remove_action( 'wp_head', 'rsd_link' );
 
@@ -57,14 +57,14 @@ if ( carbon_get_theme_option( 'wwm_cleanup_wp_defaults' ) ) {
 	}
 
 	// Remove injected CSS for recent comments widget.
-	function wwm_remove_wp_widget_recent_comments_style() {
+	function core_remove_wp_widget_recent_comments_style() {
 		if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
 			remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
 		}
 	}
 
 	// Remove injected CSS from recent comments widget.
-	function wwm_remove_recent_comments_style() {
+	function core_remove_recent_comments_style() {
 		global $wp_widget_factory;
 		if ( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
 			remove_action( 'wp_head', array(
@@ -75,8 +75,8 @@ if ( carbon_get_theme_option( 'wwm_cleanup_wp_defaults' ) ) {
 	}
 
 	// Remove gutenberg block library css
-	add_action( 'wp_enqueue_scripts', 'wwm_remove_wp_block_library_css' );
-	function wwm_remove_wp_block_library_css() {
+	add_action( 'wp_enqueue_scripts', 'core_remove_wp_block_library_css' );
+	function core_remove_wp_block_library_css() {
 		wp_dequeue_style( 'wp-block-library' );
 	}
 }

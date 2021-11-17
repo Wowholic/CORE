@@ -3,7 +3,7 @@
 /**
  * Remove Posts from WP admin panel
  */
-if ( carbon_get_theme_option( 'wwm_disable_default_post_type' ) ) {
+if ( carbon_get_theme_option( 'core_disable_default_post_type' ) ) {
 	add_action( 'admin_menu', function () {
 		remove_menu_page( 'edit.php' );
 	} );
@@ -12,14 +12,14 @@ if ( carbon_get_theme_option( 'wwm_disable_default_post_type' ) ) {
 /**
  * Disable theme and plugin editors
  */
-if ( carbon_get_theme_option( 'wwm_disable_file_edit' ) ) {
+if ( carbon_get_theme_option( 'core_disable_file_edit' ) ) {
 	define( 'DISALLOW_FILE_EDIT', true );
 }
 
 /**
  * Disable comments
  */
-if ( carbon_get_theme_option( 'wwm_disable_comments' ) ) {
+if ( carbon_get_theme_option( 'core_disable_comments' ) ) {
 	// Redirect any user trying to access comments page
 	add_action( 'admin_init', function () {
 		global $pagenow;
@@ -65,7 +65,7 @@ if ( carbon_get_theme_option( 'wwm_disable_comments' ) ) {
 /**
  * Hide Widgets page
  */
-if ( carbon_get_theme_option( 'wwm_hide_widgets_page' ) ) {
+if ( carbon_get_theme_option( 'core_hide_widgets_page' ) ) {
 	add_action( 'admin_init', function () {
 		global $pagenow;
 
@@ -83,10 +83,10 @@ if ( carbon_get_theme_option( 'wwm_hide_widgets_page' ) ) {
 /**
  * Change upload size limit
  */
-if ( carbon_get_theme_option( 'wwm_upload_size_limit' ) ) {
-	add_filter( 'upload_size_limit', 'wwm_upload_size_limit' );
-	function wwm_upload_size_limit() {
-		$size_in_bytes = carbon_get_theme_option( 'wwm_upload_size_limit' );
+if ( carbon_get_theme_option( 'core_upload_size_limit' ) ) {
+	add_filter( 'upload_size_limit', 'core_upload_size_limit' );
+	function core_upload_size_limit() {
+		$size_in_bytes = carbon_get_theme_option( 'core_upload_size_limit' );
 		$size_in_mb    = $size_in_bytes * 1024 * 1024;
 
 		return $size_in_mb;

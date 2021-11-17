@@ -3,13 +3,13 @@
 /**
  * Add extra styles to TinyMCE
  */
-if ( carbon_get_theme_option( 'wwm_tinymce_extra_styles' ) ) {
+if ( carbon_get_theme_option( 'core_tinymce_extra_styles' ) ) {
 	add_filter( 'tiny_mce_before_init', function ( $settings ) {
-		$wwm_tinymce = carbon_get_theme_option( 'wwm_tinymce_extra_styles' );
-		$new_formats = [];
-		$idx         = 0;
+		$core_tinymce = carbon_get_theme_option( 'core_tinymce_extra_styles' );
+		$new_formats  = [];
+		$idx          = 0;
 
-		foreach ( $wwm_tinymce as $style ) {
+		foreach ( $core_tinymce as $style ) {
 			$new_formats[ $idx ] = [
 				'title' => $style['title'],
 				'items' => [],
