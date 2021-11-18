@@ -26,7 +26,7 @@ function core_attach_page() {
 			     1024 => '1024MB',
 		     ] )
 		     ->set_default_value( 256 )
-		     ->set_help_text( 'Hosting provider size limit: ' . ini_get( 'upload_max_filesize' ) ?? 'unknown' ),
+		     ->set_help_text( 'Hosting provider size limit: ' . get_hosting_max_filesize() . '. <a href="' . admin_url( 'site-health.php?tab=debug' ) . '">View more server details</a>' ),
 	];
 
 	$redirects_fields = [
@@ -153,4 +153,18 @@ function core_attach_page() {
 add_action( 'carbon_fields_fields_registered', 'core_carbon_fields_available' );
 function core_carbon_fields_available() {
 	require_once( 'actions/actions.php' );
+}
+
+function get_hosting_max_filesize() {
+	$ini_size = ini_get( "upload_max_filesize" );
+
+	if ( ! $ini_size ) {
+		$ini_size = 'unknown';
+	} elseif ( is_numeric( $ini_size ) ) {
+		$ini_size .= ' bytes';
+	} else {
+		$ini_size .= 'B';
+	}
+
+	return $ini_size;
 }
