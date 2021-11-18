@@ -92,3 +92,16 @@ if ( carbon_get_theme_option( 'core_upload_size_limit' ) ) {
 		return $size_in_mb;
 	}
 }
+
+if ( carbon_get_theme_option( 'core_encrypt_email_shortcode' ) ) {
+	add_shortcode( 'email', function ( $atts, $content = null ) {
+		if ( ! is_email( $content ) ) {
+			return;
+		}
+
+		$content    = antispambot( $content );
+		$email_link = sprintf( 'mailto:%s', $content );
+
+		return sprintf( '<a href="%s">%s</a>', esc_url( $email_link, array( 'mailto' ) ), esc_html( $content ) );
+	} );
+}

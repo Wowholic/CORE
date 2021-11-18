@@ -16,6 +16,8 @@ function core_attach_page() {
 		Field::make( 'checkbox', 'core_disable_comments', __( 'Disable comments' ) ),
 		Field::make( 'checkbox', 'core_hide_widgets_page', __( 'Hide Widgets page' ) )
 		     ->set_default_value( true ),
+		Field::make( 'checkbox', 'core_encrypt_email_shortcode', __( 'Enable [email] shortcode for encrypting addresses' ) )
+		     ->set_default_value( true ),
 		Field::make( 'select', 'core_upload_size_limit', __( 'Upload size limit' ) )
 		     ->set_options( [
 			     32   => '32MB',
