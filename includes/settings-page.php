@@ -31,12 +31,12 @@ function core_attach_page() {
 
 	$redirects_fields = [
 		Field::make( 'set', 'core_redirects_home', __( 'Redirect to home:' ) )
-		     ->set_options( array(
+		     ->set_options( [
 			     'category' => 'Category archives',
 			     'tag'      => 'Tag archives',
 			     'date'     => 'Date archives',
 			     'author'   => 'Author pages',
-		     ) ),
+		     ] ),
 		Field::make( 'checkbox', 'core_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 
@@ -65,8 +65,9 @@ function core_attach_page() {
 	        <%- title %>
 	    <% } %>
 	';
-	$tinymce_fields          = [
-		Field::make( 'complex', 'core_tinymce_extra_styles', __( 'TinyMCE extra styles' ) )
+
+	$tinymce_fields = [
+		Field::make( 'complex', 'core_tinymce_extra_styles', __( 'Formats' ) )
 		     ->setup_labels( [
 			     'plural_name'   => 'Styles',
 			     'singular_name' => 'Style',
@@ -87,6 +88,47 @@ function core_attach_page() {
 		     ] )
 		     ->set_header_template( $tinymce_header_template )
 		     ->set_collapsed( true ),
+		Field::make( 'set', 'core_remove_tinymce_buttons', __( 'Buttons to remove' ) )
+		     ->set_options( [
+			     'bold'          => 'Bold',
+			     'italic'        => 'Italic',
+			     'bullist'       => 'Bulleted list',
+			     'numlist'       => 'Numbered list',
+			     'blockquote'    => 'Blockquote',
+			     'alignleft'     => 'Align left',
+			     'aligncenter'   => 'Align center',
+			     'alignright'    => 'Align right',
+			     'link'          => 'Add link',
+			     'unlink'        => 'Remove link',
+			     'wp_more'       => 'Read more',
+			     'wp_adv'        => 'Second row toggle (if checked, second row will always display)',
+			     'strikethrough' => 'Strikethrough',
+			     'hr'            => 'Horizontal line',
+			     'forecolor'     => 'Text color',
+			     'pastetext'     => 'Paste as text',
+			     'removeformat'  => 'Clear formatting',
+			     'charmap'       => 'Special characters',
+			     'outdent'       => 'Outdent',
+			     'indent'        => 'Indent',
+			     'undo'          => 'Undo',
+			     'redo'          => 'Redo',
+			     'wp_help'       => 'Keyboard shortcuts',
+		     ] )
+		     ->set_default_value( [
+			     'blockquote',
+			     'alignleft',
+			     'aligncenter',
+			     'alignright',
+			     'wp_more',
+			     'wp_adv',
+			     'strikethrough',
+			     'hr',
+			     'forecolor',
+			     'pastetext',
+			     'removeformat',
+			     'outdent',
+			     'indent',
+		     ] ),
 	];
 
 	$container = Container::make( 'theme_options', __( 'Wowholic' ) )
