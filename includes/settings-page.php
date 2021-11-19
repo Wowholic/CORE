@@ -29,6 +29,8 @@ function core_attach_page() {
 		     ] )
 		     ->set_default_value( 256 )
 		     ->set_help_text( 'Hosting provider size limit: ' . get_hosting_max_filesize() . '. <a href="' . admin_url( 'site-health.php?tab=debug' ) . '">View more server details</a>' ),
+		Field::make( 'html', 'core_install_plugins', __( 'Install recommended plugins' ) )
+		     ->set_html( 'get_install_plugins_html' ),
 	];
 
 	$redirects_fields = [
@@ -169,4 +171,36 @@ function get_hosting_max_filesize() {
 	}
 
 	return $ini_size;
+}
+
+function get_install_plugins_html() {
+	ob_start();
+	$all_installed = true; ?>
+
+    <strong><?php _e( 'Install recommended plugins' ) ?></strong>
+    <ul id="recommended-plugins"> <?php
+		foreach ( CORE_RECOMMENDED_PLUGINS as $plugin ) : ?>
+            <li> <?php
+				if ( ! is_plugin_installed( $plugin['slug'] ) ) :
+					$all_installed = false; ?>
+                    <input id="core-<?php echo $plugin['slug']; ?>" type="checkbox"
+                           value="<?php echo $plugin['provider']; ?>---<?php echo $plugin['slug']; ?>" name="plugins">
+                    <label for="core-<?php echo $plugin['slug']; ?>"><?php echo $plugin['name']; ?></label> <?php
+				else : ?>
+                    <p><?php echo $plugin['name']; ?> <?php _e( 'is already installed' ) ?>.</p> <?php
+				endif; ?>
+            </li> <?php
+		endforeach; ?>
+    </ul> <?php
+
+	if ( ! $all_installed ) : ?>
+        <button id="core-install-recommended-plugins"
+                class="button button-primary button-large"><?php _e( 'Install' ) ?></button>
+        <div class="core-install-plugins-wait">
+            <span class="spinner is-active"></span>
+			<?php _e( 'Downloading and installing plugins. Please wait...' ) ?>
+        </div> <?php
+	endif; ?>
+
+	<?php return ob_get_clean();
 }

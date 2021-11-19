@@ -93,6 +93,9 @@ if ( carbon_get_theme_option( 'core_upload_size_limit' ) ) {
 	}
 }
 
+/**
+ * Email shortcode encrypt.
+ */
 if ( carbon_get_theme_option( 'core_encrypt_email_shortcode' ) ) {
 	add_shortcode( 'email', function ( $atts, $content = null ) {
 		if ( ! is_email( $content ) ) {
@@ -104,4 +107,40 @@ if ( carbon_get_theme_option( 'core_encrypt_email_shortcode' ) ) {
 
 		return sprintf( '<a href="%s">%s</a>', esc_url( $email_link, array( 'mailto' ) ), esc_html( $content ) );
 	} );
+}
+
+/**
+ * AJAX call for installing recommended plugins.
+ */
+add_action( 'wp_ajax_core_install_recommended_plugins', 'core_install_recommended_plugins' );
+function core_install_recommended_plugins() {
+	try {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			throw new ErrorException( __( 'Not enough permissions.' ) );
+		}
+
+		$plugins = explode( ',', $_POST['plugins'] );
+
+		foreach ( $plugins as $plugin_data ) {
+			$plugin_data = explode( '---', $plugin_data );
+			$provider    = $plugin_data[0];
+			$plugin_slug = $plugin_data[1];
+
+			if ( ! is_plugin_installed( $plugin_slug ) ) {
+				download_plugin( $plugin_slug, $provider );
+				extract_zip( WP_PLUGIN_DIR . '/' . $plugin_slug . '.zip', WP_PLUGIN_DIR );
+			}
+		}
+
+		echo json_encode( [
+			'success' => true,
+		] );
+	} catch ( Exception $e ) {
+		echo json_encode( [
+			'success' => false,
+			'message' => $e->getMessage(),
+		] );
+	}
+
+	wp_die();
 }
