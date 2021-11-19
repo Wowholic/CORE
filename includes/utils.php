@@ -37,7 +37,7 @@ function is_plugin_installed( $plugin_slug ) {
 	include_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 	foreach ( get_plugins() as $installed_plugin_slug => $installed_plugin_data ) {
-		if ( str_contains( $installed_plugin_slug, $plugin_slug ) ) {
+		if ( strpos( $installed_plugin_slug, $plugin_slug ) !== false ) {
 			return true;
 		}
 	}
