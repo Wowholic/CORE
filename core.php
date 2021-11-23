@@ -37,8 +37,8 @@ define( 'CORE_RECOMMENDED_PLUGINS', [
 	],
 	[
 		'provider' => 'wp',
-		'slug'     => 'safe-svg',
-		'name'     => 'Safe SVG',
+		'slug'     => 'svg-support',
+		'name'     => 'SVG Support',
 	],
 	[
 		'provider' => 'wp',
