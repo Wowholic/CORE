@@ -6,13 +6,14 @@
 
 if ( carbon_get_theme_option( 'core_show_dev_grid' ) ) {
 	function core_add_dev_grid_css() {
-		$width   = carbon_get_theme_option( 'core_dev_grid_width' );
-		$padding = carbon_get_theme_option( 'core_dev_grid_padding' );
-		$columns = carbon_get_theme_option( 'core_dev_grid_columns' );
-		$gutter  = carbon_get_theme_option( 'core_dev_grid_gutter' );
-		$color   = carbon_get_theme_option( 'core_dev_grid_color' );
+		$color       = carbon_get_theme_option( 'core_dev_grid_color' );
+		$breakpoints = carbon_get_theme_option( 'core_dev_grid_breakpoints' );
+
+		usort( $breakpoints, function ( $item1, $item2 ) {
+			return $item1['core_dev_grid_breakpoint'] <=> $item2['core_dev_grid_breakpoint'];
+		} );
 		?>
-        <style type="text/css">
+        <style>
             .core-toggle-grid {
                 position: fixed;
                 top: 120px;
@@ -63,6 +64,26 @@ if ( carbon_get_theme_option( 'core_show_dev_grid' ) ) {
                 display: block;
             }
 
+            <?php
+                $i = 0;
+				foreach ($breakpoints as $breakpoint_item):
+                    $width = $breakpoint_item['core_dev_grid_width'];
+                    $padding = $breakpoint_item['core_dev_grid_padding'];
+                    $columns = $breakpoint_item['core_dev_grid_columns'];
+                    $gutter = $breakpoint_item['core_dev_grid_gutter'];
+                    $breakpoint_max = $breakpoints[$i+1]['core_dev_grid_breakpoint'] - 1;
+                    $breakpoint_min = $breakpoint_item['core_dev_grid_breakpoint'];
+
+                    if (count($breakpoints) > 1) {
+                        if ($i === 0) {
+                            echo "@media (max-width: ". $breakpoint_max ."px) {\n";
+                        } elseif ($i === (count($breakpoints) - 1)) {
+                            echo "@media (min-width: ". $breakpoint_min ."px) {\n";
+                        } else {
+                            echo "@media (min-width: ". $breakpoint_min ."px) and (max-width: ". $breakpoint_max ."px) {\n";
+                        }
+                    }
+			?>
             .core-dev-grid .core-dev-grid_container {
                 max-width: <?php echo $width; ?>px;
                 margin: 0 auto;
@@ -78,7 +99,20 @@ if ( carbon_get_theme_option( 'core_show_dev_grid' ) ) {
                 flex: 0 0 <?php echo 100/$columns ?>%;
                 max-width: <?php echo 100/$columns ?>%;
                 padding: 0 <?php echo $gutter / 2; ?>px;
+                display: none;
             }
+
+            .core-dev-grid .core-dev-grid_col:nth-child(-n + <?php echo $columns; ?>) {
+                display: block;
+            }
+
+            <?php
+                if (count($breakpoints) > 1) {
+                    echo "}\n";
+                }
+                $i++;
+                endforeach;
+            ?>
 
             .core-dev-grid .core-dev-grid_col span {
                 display: block;
@@ -90,7 +124,13 @@ if ( carbon_get_theme_option( 'core_show_dev_grid' ) ) {
 	}
 
 	function core_add_dev_grid() {
-		$columns = carbon_get_theme_option( 'core_dev_grid_columns' );
+		$breakpoints = carbon_get_theme_option( 'core_dev_grid_breakpoints' );
+
+		usort( $breakpoints, function ( $item1, $item2 ) {
+			return $item1['core_dev_grid_columns'] <=> $item2['core_dev_grid_columns'];
+		} );
+
+		$columns = end( $breakpoints )['core_dev_grid_columns'];
 		?>
         <button class="core-toggle-grid js-core-toggle-grid is-active">
             <svg width="512px" height="350px" viewBox="0 0 512 350" version="1.1" xmlns="http://www.w3.org/2000/svg"
