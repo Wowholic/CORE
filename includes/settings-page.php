@@ -45,23 +45,44 @@ function core_attach_page() {
 	];
 
 	$dev_grid_fields = [
-		Field::make( 'checkbox', 'core_show_dev_grid', __( 'Show Grid' ) ),
-		Field::make( 'text', 'core_dev_grid_width', __( 'Container width (px)' ) )
-		     ->set_default_value( '1440' )
-		     ->set_width( 20 ),
-		Field::make( 'text', 'core_dev_grid_padding', __( 'Container padding (px)' ) )
-		     ->set_default_value( '32' )
-		     ->set_width( 20 ),
-		Field::make( 'text', 'core_dev_grid_columns', __( 'Number of columns (px)' ) )
-		     ->set_default_value( '12' )
-		     ->set_width( 20 ),
-		Field::make( 'text', 'core_dev_grid_gutter', __( 'Gutter (px)' ) )
-		     ->set_default_value( '32' )
-		     ->set_width( 20 ),
+		Field::make( 'checkbox', 'core_show_dev_grid', __( 'Show Grid' ) )
+		     ->set_width( 50 ),
 		Field::make( 'color', 'core_dev_grid_color', __( 'Column color' ) )
 		     ->set_alpha_enabled( true )
 		     ->set_default_value( '#FF0000' )
-		     ->set_width( 20 ),
+		     ->set_width( 50 ),
+		Field::make( 'complex', 'core_dev_grid_breakpoints', __( 'Grid' ) )
+		     ->setup_labels( [
+			     'plural_name'   => 'Breakpoints',
+			     'singular_name' => 'Breakpoint',
+		     ] )
+		     ->add_fields( array(
+			     Field::make( 'text', 'core_dev_grid_breakpoint', __( 'Breakpoint (px)' ) )
+			          ->set_attribute( 'type', 'number' )
+			          ->set_attribute( 'min', 0 )
+			          ->set_default_value( '1440' )
+			          ->set_width( 20 ),
+			     Field::make( 'text', 'core_dev_grid_width', __( 'Container width (px)' ) )
+			          ->set_attribute( 'type', 'number' )
+			          ->set_attribute( 'min', 0 )
+			          ->set_default_value( '1440' )
+			          ->set_width( 20 ),
+			     Field::make( 'text', 'core_dev_grid_padding', __( 'Container padding (px)' ) )
+			          ->set_attribute( 'type', 'number' )
+			          ->set_attribute( 'min', 0 )
+			          ->set_default_value( '32' )
+			          ->set_width( 20 ),
+			     Field::make( 'text', 'core_dev_grid_columns', __( 'Number of columns (px)' ) )
+			          ->set_attribute( 'type', 'number' )
+			          ->set_attribute( 'min', 0 )
+			          ->set_default_value( '12' )
+			          ->set_width( 20 ),
+			     Field::make( 'text', 'core_dev_grid_gutter', __( 'Gutter (px)' ) )
+			          ->set_attribute( 'type', 'number' )
+			          ->set_attribute( 'min', 0 )
+			          ->set_default_value( '32' )
+			          ->set_width( 20 ),
+		     ) ),
 	];
 
 	$tinymce_header_template = '
