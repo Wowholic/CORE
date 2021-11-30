@@ -85,6 +85,11 @@ function core_attach_page() {
 		     ) ),
 	];
 
+	$layout_fields = [
+		Field::make( 'checkbox', 'core_enable_layout_spacing', __( 'Enable layout spacing' ) )
+		     ->set_help_text( 'Press Alt on Windows or ⌥ Option on a Mac.' )
+	];
+
 	$tinymce_header_template = '
 	    <% if (title) { %>
 	        <%- title %>
@@ -162,6 +167,7 @@ function core_attach_page() {
 	                      ->add_tab( __( 'General' ), $general_fields )
 	                      ->add_tab( __( 'Redirects' ), $redirects_fields )
 	                      ->add_tab( __( 'Grid' ), $dev_grid_fields )
+	                      ->add_tab( __( 'Layout' ), $layout_fields )
 	                      ->add_tab( __( 'TinyMCE' ), $tinymce_fields );
 
 	if ( class_exists( 'acf' ) ) {
