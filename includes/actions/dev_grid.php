@@ -71,15 +71,17 @@ if ( carbon_get_theme_option( 'core_show_dev_grid' ) ) {
                     $padding = $breakpoint_item['core_dev_grid_padding'];
                     $columns = $breakpoint_item['core_dev_grid_columns'];
                     $gutter = $breakpoint_item['core_dev_grid_gutter'];
-                    $breakpoint_max = $breakpoints[$i+1]['core_dev_grid_breakpoint'] - 1;
-                    $breakpoint_min = $breakpoint_item['core_dev_grid_breakpoint'];
 
                     if (count($breakpoints) > 1) {
+                        $breakpoint_min = $breakpoint_item['core_dev_grid_breakpoint'];
+
                         if ($i === 0) {
+                            $breakpoint_max = $breakpoints[$i+1]['core_dev_grid_breakpoint'] - 1;
                             echo "@media (max-width: ". $breakpoint_max ."px) {\n";
                         } elseif ($i === (count($breakpoints) - 1)) {
                             echo "@media (min-width: ". $breakpoint_min ."px) {\n";
                         } else {
+                            $breakpoint_max = $breakpoints[$i+1]['core_dev_grid_breakpoint'] - 1;
                             echo "@media (min-width: ". $breakpoint_min ."px) and (max-width: ". $breakpoint_max ."px) {\n";
                         }
                     }
