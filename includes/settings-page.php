@@ -90,85 +90,13 @@ function core_attach_page() {
 		     ->set_help_text( 'Press Alt on Windows or ⌥ Option on a Mac.' )
 	];
 
-	$tinymce_header_template = '
-	    <% if (title) { %>
-	        <%- title %>
-	    <% } %>
-	';
-
-	$tinymce_fields = [
-		Field::make( 'complex', 'core_tinymce_extra_styles', __( 'Formats' ) )
-		     ->setup_labels( [
-			     'plural_name'   => 'Styles',
-			     'singular_name' => 'Style',
-		     ] )
-		     ->add_fields( [
-			     Field::make( 'text', 'title', __( 'Style Title' ) ),
-			     Field::make( 'complex', 'options', __( 'Options' ) )
-			          ->setup_labels( [
-				          'plural_name'   => 'Options',
-				          'singular_name' => 'Option',
-			          ] )
-			          ->add_fields( [
-				          Field::make( 'text', 'title', __( 'Option Title' ) ),
-				          Field::make( 'text', 'classes', __( 'Option Classes' ) ),
-			          ] )
-			          ->set_header_template( $tinymce_header_template )
-			          ->set_collapsed( true ),
-		     ] )
-		     ->set_header_template( $tinymce_header_template )
-		     ->set_collapsed( true ),
-		Field::make( 'set', 'core_remove_tinymce_buttons', __( 'Buttons to remove' ) )
-		     ->set_options( [
-			     'bold'          => 'Bold',
-			     'italic'        => 'Italic',
-			     'bullist'       => 'Bulleted list',
-			     'numlist'       => 'Numbered list',
-			     'blockquote'    => 'Blockquote',
-			     'alignleft'     => 'Align left',
-			     'aligncenter'   => 'Align center',
-			     'alignright'    => 'Align right',
-			     'link'          => 'Add link',
-			     'unlink'        => 'Remove link',
-			     'wp_more'       => 'Read more',
-			     'wp_adv'        => 'Second row toggle (if checked, second row will always display)',
-			     'strikethrough' => 'Strikethrough',
-			     'hr'            => 'Horizontal line',
-			     'forecolor'     => 'Text color',
-			     'pastetext'     => 'Paste as text',
-			     'removeformat'  => 'Clear formatting',
-			     'charmap'       => 'Special characters',
-			     'outdent'       => 'Outdent',
-			     'indent'        => 'Indent',
-			     'undo'          => 'Undo',
-			     'redo'          => 'Redo',
-			     'wp_help'       => 'Keyboard shortcuts',
-		     ] )
-		     ->set_default_value( [
-			     'blockquote',
-			     'alignleft',
-			     'aligncenter',
-			     'alignright',
-			     'wp_more',
-			     'wp_adv',
-			     'strikethrough',
-			     'hr',
-			     'forecolor',
-			     'pastetext',
-			     'removeformat',
-			     'outdent',
-			     'indent',
-		     ] ),
-	];
-
 	$container = Container::make( 'theme_options', __( 'Wowholic' ) )
 	                      ->set_icon( 'none' ) // Or $container_icon
 	                      ->where( 'current_user_capability', '=', 'manage_options' )
 	                      ->add_tab( __( 'General' ), $general_fields )
 	                      ->add_tab( __( 'Redirects' ), $redirects_fields )
 	                      ->add_tab( __( 'Grid' ), $dev_grid_fields )
-	                      ->add_tab( __( 'Layout' ), $layout_fields )
-	                      ->add_tab( __( 'TinyMCE' ), $tinymce_fields );
+	                      ->add_tab( __( 'Layout' ), $layout_fields );
 
 	if ( class_exists( 'acf' ) ) {
 		$acf_fields = [
@@ -178,6 +106,81 @@ function core_attach_page() {
 		];
 
 		$container->add_tab( __( 'ACF' ), $acf_fields );
+	}
+
+	if ( is_plugin_active_by_slug( 'classic-editor' ) ) {
+		$tinymce_header_template = '
+	    <% if (title) { %>
+	        <%- title %>
+	    <% } %>
+	    ';
+
+		$tinymce_fields = [
+			Field::make( 'complex', 'core_tinymce_extra_styles', __( 'Formats' ) )
+			     ->setup_labels( [
+				     'plural_name'   => 'Styles',
+				     'singular_name' => 'Style',
+			     ] )
+			     ->add_fields( [
+				     Field::make( 'text', 'title', __( 'Style Title' ) ),
+				     Field::make( 'complex', 'options', __( 'Options' ) )
+				          ->setup_labels( [
+					          'plural_name'   => 'Options',
+					          'singular_name' => 'Option',
+				          ] )
+				          ->add_fields( [
+					          Field::make( 'text', 'title', __( 'Option Title' ) ),
+					          Field::make( 'text', 'classes', __( 'Option Classes' ) ),
+				          ] )
+				          ->set_header_template( $tinymce_header_template )
+				          ->set_collapsed( true ),
+			     ] )
+			     ->set_header_template( $tinymce_header_template )
+			     ->set_collapsed( true ),
+			Field::make( 'set', 'core_remove_tinymce_buttons', __( 'Buttons to remove' ) )
+			     ->set_options( [
+				     'bold'          => 'Bold',
+				     'italic'        => 'Italic',
+				     'bullist'       => 'Bulleted list',
+				     'numlist'       => 'Numbered list',
+				     'blockquote'    => 'Blockquote',
+				     'alignleft'     => 'Align left',
+				     'aligncenter'   => 'Align center',
+				     'alignright'    => 'Align right',
+				     'link'          => 'Add link',
+				     'unlink'        => 'Remove link',
+				     'wp_more'       => 'Read more',
+				     'wp_adv'        => 'Second row toggle (if checked, second row will always display)',
+				     'strikethrough' => 'Strikethrough',
+				     'hr'            => 'Horizontal line',
+				     'forecolor'     => 'Text color',
+				     'pastetext'     => 'Paste as text',
+				     'removeformat'  => 'Clear formatting',
+				     'charmap'       => 'Special characters',
+				     'outdent'       => 'Outdent',
+				     'indent'        => 'Indent',
+				     'undo'          => 'Undo',
+				     'redo'          => 'Redo',
+				     'wp_help'       => 'Keyboard shortcuts',
+			     ] )
+			     ->set_default_value( [
+				     'blockquote',
+				     'alignleft',
+				     'aligncenter',
+				     'alignright',
+				     'wp_more',
+				     'wp_adv',
+				     'strikethrough',
+				     'hr',
+				     'forecolor',
+				     'pastetext',
+				     'removeformat',
+				     'outdent',
+				     'indent',
+			     ] ),
+		];
+        
+		$container->add_tab( __( 'TinyMCE' ), $tinymce_fields );
 	}
 }
 
