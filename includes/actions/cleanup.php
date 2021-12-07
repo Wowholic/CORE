@@ -77,6 +77,8 @@ if ( carbon_get_theme_option( 'core_cleanup_wp_defaults' ) ) {
 	// Remove gutenberg block library css
 	add_action( 'wp_enqueue_scripts', 'core_remove_wp_block_library_css' );
 	function core_remove_wp_block_library_css() {
-		wp_dequeue_style( 'wp-block-library' );
+		if ( is_plugin_active_by_slug( 'classic-editor' ) ) {
+			wp_dequeue_style( 'wp-block-library' );
+		}
 	}
 }
