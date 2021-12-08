@@ -16,7 +16,7 @@ if ( carbon_get_theme_option( 'core_enable_theme_options' ) ) {
 }
 
 /**
- * Allow shortcodes in excerpts, textareas and text fields from ACF
+ * Allow shortcodes in excerpts, textarea and text fields from ACF
  */
 if ( carbon_get_theme_option( 'core_enable_shortcodes' ) ) {
 	add_filter( 'get_the_excerpt', 'do_shortcode' );
@@ -28,8 +28,7 @@ if ( carbon_get_theme_option( 'core_enable_shortcodes' ) ) {
  * Hide ACF menu for non-admins
  */
 if ( carbon_get_theme_option( 'core_hide_acf_menu' ) ) {
-	add_filter( 'acf/settings/show_admin', 'core_custom_acf_show_admin' );
-	function core_custom_acf_show_admin( $show ): bool {
+	add_filter( 'acf/settings/show_admin', function ( $show ) {
 		return current_user_can( 'manage_options' );
-	}
+	} );
 }

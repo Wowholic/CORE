@@ -84,13 +84,11 @@ if ( carbon_get_theme_option( 'core_hide_widgets_page' ) ) {
  * Change upload size limit
  */
 if ( carbon_get_theme_option( 'core_upload_size_limit' ) ) {
-	add_filter( 'upload_size_limit', 'core_upload_size_limit' );
-	function core_upload_size_limit() {
+	add_filter( 'upload_size_limit', function () {
 		$size_in_bytes = carbon_get_theme_option( 'core_upload_size_limit' );
-		$size_in_mb    = $size_in_bytes * 1024 * 1024;
 
-		return $size_in_mb;
-	}
+		return $size_in_bytes * 1024 * 1024;
+	} );
 }
 
 /**
@@ -112,8 +110,7 @@ if ( carbon_get_theme_option( 'core_encrypt_email_shortcode' ) ) {
 /**
  * AJAX call for installing recommended plugins.
  */
-add_action( 'wp_ajax_core_install_recommended_plugins', 'core_install_recommended_plugins' );
-function core_install_recommended_plugins() {
+add_action( 'wp_ajax_core_install_recommended_plugins', function () {
 	try {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			throw new ErrorException( __( 'Not enough permissions.' ) );
@@ -143,4 +140,4 @@ function core_install_recommended_plugins() {
 	}
 
 	wp_die();
-}
+} );

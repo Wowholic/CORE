@@ -1,6 +1,11 @@
 <?php
 /**
  * Add script async/defer
+ *
+ * @param $tag
+ * @param $handle
+ *
+ * @return array|mixed|string|string[]
  */
 function core_script_async_defer( $tag, $handle ) {
 	if ( strpos( $handle, 'async' ) !== false ) {

@@ -3,8 +3,7 @@
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
-add_action( 'carbon_fields_register_fields', 'core_attach_page' );
-function core_attach_page() {
+add_action( 'carbon_fields_register_fields', function () {
 	$container_icon = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUzIiBoZWlnaHQ9IjI1MyIgdmlld0JveD0iMCAwIDI1MyAyNTMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMzEgMEMxMy44NzkyIDAgMCAxMy44NzkyIDAgMzFWMjIyQzAgMjM5LjEyMSAxMy44NzkyIDI1MyAzMSAyNTNIMjIyQzIzOS4xMjEgMjUzIDI1MyAyMzkuMTIxIDI1MyAyMjJWMzFDMjUzIDEzLjg3OTIgMjM5LjEyMSAwIDIyMiAwSDMxWk03MS42NzU4IDE5OC4xMUM3My4wNzg5IDE5OS4zNyA3NC45NzMgMjAwIDc3LjM1ODIgMjAwSDk3LjM1MTZDMTAxLjI4IDIwMCAxMDMuODc2IDE5OC4xOCAxMDUuMTM5IDE5NC41NEwxMjYuMzk1IDEzNC40OEwxNDcuNjUxIDE5NC41NEMxNDguMjEyIDE5NS45NCAxNDkuMTI0IDE5Ny4yIDE1MC4zODcgMTk4LjMyQzE1MS42NSAxOTkuNDQgMTUzLjQwNCAyMDAgMTU1LjY0OCAyMDBIMTc1LjY0MkMxNzcuODg3IDIwMCAxNzkuNzExIDE5OS4zNyAxODEuMTE0IDE5OC4xMUMxODIuNjU3IDE5Ni43MSAxODMuNTY5IDE5NS4wMyAxODMuODUgMTkzLjA3TDIwNi43OSA1OC44OEwyMDcgNTcuNDFDMjA3IDU2LjI5IDIwNi41MDkgNTUuMzEgMjA1LjUyNyA1NC40N0MyMDQuNjg1IDUzLjQ5IDIwMy42MzMgNTMgMjAyLjM3IDUzSDE3Ni4yNzNDMTcyLjM0NSA1MyAxNzAuMTcgNTQuNTQgMTY5Ljc0OSA1Ny42MkwxNTYuMDY5IDEzOS41MkwxNDAuOTE2IDkxLjIyQzEzOS43OTQgODcuNDQgMTM3LjQ3OSA4NS41NSAxMzMuOTcxIDg1LjU1SDExOC44MThDMTE1LjczMiA4NS41NSAxMTMuNDE3IDg3LjQ0IDExMS44NzMgOTEuMjJMOTYuNzIwMyAxMzkuNTJMODMuMDQwNSA1Ny42MkM4Mi42MTk2IDU0LjU0IDgwLjQ0NDkgNTMgNzYuNTE2MyA1M0g1MC40MTk2QzQ5LjI5NzIgNTMgNDguMjQ0OSA1My40OSA0Ny4yNjI4IDU0LjQ3QzQ2LjQyMDkgNTUuMzEgNDYgNTYuMjkgNDYgNTcuNDFDNDYgNTcuOTcgNDYuMDcwMiA1OC40NiA0Ni4yMTA0IDU4Ljg4TDY5LjE1MDMgMTkzLjA3QzY5LjQzMDkgMTk1LjAzIDcwLjI3MjggMTk2LjcxIDcxLjY3NTggMTk4LjExWiIgZmlsbD0iI0M0QzRDNCIvPgo8L3N2Zz4K';
 
 	$general_fields = [
@@ -44,40 +43,40 @@ function core_attach_page() {
 		Field::make( 'checkbox', 'core_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 
-	$dev_grid_fields = [
-		Field::make( 'checkbox', 'core_show_dev_grid', __( 'Show Grid' ) )
+	$grid_fields = [
+		Field::make( 'checkbox', 'core_enable_grid', __( 'Enable Grid' ) )
 		     ->set_width( 50 ),
-		Field::make( 'color', 'core_dev_grid_color', __( 'Column color' ) )
+		Field::make( 'color', 'core_grid_color', __( 'Column color' ) )
 		     ->set_alpha_enabled( true )
 		     ->set_default_value( '#FF0000' )
 		     ->set_width( 50 ),
-		Field::make( 'complex', 'core_dev_grid_breakpoints', __( 'Grid' ) )
+		Field::make( 'complex', 'core_grid_breakpoints', __( 'Grid' ) )
 		     ->setup_labels( [
 			     'plural_name'   => 'Breakpoints',
 			     'singular_name' => 'Breakpoint',
 		     ] )
 		     ->add_fields( array(
-			     Field::make( 'text', 'core_dev_grid_breakpoint', __( 'Breakpoint (px)' ) )
+			     Field::make( 'text', 'core_grid_breakpoint', __( 'Breakpoint (px)' ) )
 			          ->set_attribute( 'type', 'number' )
 			          ->set_attribute( 'min', 0 )
 			          ->set_default_value( '1440' )
 			          ->set_width( 20 ),
-			     Field::make( 'text', 'core_dev_grid_width', __( 'Container width (px)' ) )
+			     Field::make( 'text', 'core_grid_width', __( 'Container width (px)' ) )
 			          ->set_attribute( 'type', 'number' )
 			          ->set_attribute( 'min', 0 )
 			          ->set_default_value( '1440' )
 			          ->set_width( 20 ),
-			     Field::make( 'text', 'core_dev_grid_padding', __( 'Container padding (px)' ) )
+			     Field::make( 'text', 'core_grid_padding', __( 'Container padding (px)' ) )
 			          ->set_attribute( 'type', 'number' )
 			          ->set_attribute( 'min', 0 )
 			          ->set_default_value( '32' )
 			          ->set_width( 20 ),
-			     Field::make( 'text', 'core_dev_grid_columns', __( 'Number of columns (px)' ) )
+			     Field::make( 'text', 'core_grid_columns', __( 'Number of columns (px)' ) )
 			          ->set_attribute( 'type', 'number' )
 			          ->set_attribute( 'min', 0 )
 			          ->set_default_value( '12' )
 			          ->set_width( 20 ),
-			     Field::make( 'text', 'core_dev_grid_gutter', __( 'Gutter (px)' ) )
+			     Field::make( 'text', 'core_grid_gutter', __( 'Gutter (px)' ) )
 			          ->set_attribute( 'type', 'number' )
 			          ->set_attribute( 'min', 0 )
 			          ->set_default_value( '32' )
@@ -95,7 +94,7 @@ function core_attach_page() {
 	                      ->where( 'current_user_capability', '=', 'manage_options' )
 	                      ->add_tab( __( 'General' ), $general_fields )
 	                      ->add_tab( __( 'Redirects' ), $redirects_fields )
-	                      ->add_tab( __( 'Grid' ), $dev_grid_fields )
+	                      ->add_tab( __( 'Grid' ), $grid_fields )
 	                      ->add_tab( __( 'Layout' ), $layout_fields );
 
 	if ( class_exists( 'acf' ) ) {
@@ -179,58 +178,18 @@ function core_attach_page() {
 				     'indent',
 			     ] ),
 		];
-        
+
 		$container->add_tab( __( 'TinyMCE' ), $tinymce_fields );
 	}
-}
+} );
 
-add_action( 'carbon_fields_fields_registered', 'core_carbon_fields_available' );
-function core_carbon_fields_available() {
-	require_once( 'actions/actions.php' );
-}
-
-function get_hosting_max_filesize() {
-	$ini_size = ini_get( "upload_max_filesize" );
-
-	if ( ! $ini_size ) {
-		$ini_size = 'unknown';
-	} elseif ( is_numeric( $ini_size ) ) {
-		$ini_size .= ' bytes';
-	} else {
-		$ini_size .= 'B';
-	}
-
-	return $ini_size;
-}
-
-function get_install_plugins_html() {
-	ob_start();
-	$all_installed = true; ?>
-
-    <strong><?php _e( 'Install recommended plugins' ) ?></strong>
-    <ul id="recommended-plugins"> <?php
-		foreach ( CORE_RECOMMENDED_PLUGINS as $plugin ) : ?>
-            <li> <?php
-				if ( ! is_plugin_installed( $plugin['slug'] ) ) :
-					$all_installed = false; ?>
-                    <input id="core-<?php echo $plugin['slug']; ?>" type="checkbox"
-                           value="<?php echo $plugin['provider']; ?>---<?php echo $plugin['slug']; ?>" name="plugins">
-                    <label for="core-<?php echo $plugin['slug']; ?>"><?php echo $plugin['name']; ?></label> <?php
-				else : ?>
-                    <p><?php echo $plugin['name']; ?> <?php _e( 'is already installed' ) ?>.</p> <?php
-				endif; ?>
-            </li> <?php
-		endforeach; ?>
-    </ul> <?php
-
-	if ( ! $all_installed ) : ?>
-        <button id="core-install-recommended-plugins"
-                class="button button-primary button-large"><?php _e( 'Install' ) ?></button>
-        <div class="core-install-plugins-wait">
-            <span class="spinner is-active"></span>
-			<?php _e( 'Downloading and installing plugins. Please wait...' ) ?>
-        </div> <?php
-	endif; ?>
-
-	<?php return ob_get_clean();
-}
+add_action( 'carbon_fields_fields_registered', function () {
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/filters.php' );
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/cleanup.php' );
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/general.php' );
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/redirects.php' );
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/grid.php' );
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/layout.php' );
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/tinymce.php' );
+	require_once( CORE_PLUGIN_PATH . 'includes/actions/acf.php' );
+} );

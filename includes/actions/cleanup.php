@@ -15,6 +15,9 @@ if ( carbon_get_theme_option( 'core_cleanup_wp_defaults' ) ) {
 	// Clean up comment styles in the head.
 	add_action( 'wp_head', 'core_remove_recent_comments_style', 1 );
 
+	// Remove gutenberg block library css
+	add_action( 'wp_enqueue_scripts', 'core_remove_wp_block_library_css' );
+
 	function core_cleanup_head() {
 		// EditURI link.
 		remove_action( 'wp_head', 'rsd_link' );
@@ -27,15 +30,6 @@ if ( carbon_get_theme_option( 'core_cleanup_wp_defaults' ) ) {
 
 		// Windows Live Writer.
 		remove_action( 'wp_head', 'wlwmanifest_link' );
-
-		// Index link.
-		remove_action( 'wp_head', 'index_rel_link' );
-
-		// Previous link.
-		remove_action( 'wp_head', 'parent_post_rel_link', 10 );
-
-		// Start link.
-		remove_action( 'wp_head', 'start_post_rel_link', 10 );
 
 		// Canonical.
 		remove_action( 'wp_head', 'rel_canonical', 10 );
@@ -75,7 +69,6 @@ if ( carbon_get_theme_option( 'core_cleanup_wp_defaults' ) ) {
 	}
 
 	// Remove gutenberg block library css
-	add_action( 'wp_enqueue_scripts', 'core_remove_wp_block_library_css' );
 	function core_remove_wp_block_library_css() {
 		if ( is_plugin_active_by_slug( 'classic-editor' ) ) {
 			wp_dequeue_style( 'wp-block-library' );
