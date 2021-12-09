@@ -8,11 +8,6 @@
 function get_recommended_plugins(): array {
 	return [
 		[
-			'provider' => 'wow',
-			'slug'     => 'advanced-custom-fields-pro',
-			'name'     => 'Advanced Custom Fields PRO',
-		],
-		[
 			'provider' => 'wp',
 			'slug'     => 'classic-editor',
 			'name'     => 'Classic Editor',
@@ -59,8 +54,6 @@ function get_recommended_plugins(): array {
 function download_plugin( $plugin_slug, $provider ) {
 	if ( $provider === 'wp' ) {
 		$filename = 'https://downloads.wordpress.org/plugin/' . $plugin_slug . '.zip';
-	} else if ( $provider === 'wow' ) {
-		$filename = 'https://core.wowholic.com/plugin-archive/' . $plugin_slug . '.zip';
 	}
 
 	file_put_contents( WP_PLUGIN_DIR . '/' . $plugin_slug . '.zip', file_get_contents( $filename ) );
