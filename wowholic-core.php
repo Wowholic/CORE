@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: CORE
+ * Plugin Name: Wowholic CORE
  * Plugin URI: https://wowholic.com
  * Description: Utility functions and options for common tasks in WordPress.
  * Version: 1.0.0

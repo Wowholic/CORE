@@ -1,4 +1,4 @@
-=== CORE ===
+=== Wowholic CORE ===
 Contributors: wowholic
 Donate link: https://wowholic.com
 License: GPLv3

@@ -2,13 +2,6 @@
     cursor: pointer;
 }
 
-#toplevel_page_crb_carbon_fields_container_wowholic .wp-menu-image {
-    background-image: url(../img/wow-icon.png);
-    background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 .core-install-plugins-wait {
     display: none;
     margin-top: 1rem;
