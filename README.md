@@ -1,3 +1,5 @@
+<img src="https://github.com/Wowholic/CORE/raw/master/.github/wow_logo_green.png" alt="Wowholic logo" width="200px">
+
 ## Welcome to the CORE GitHub repository
 
 Here you can browse the source of the project, find and discuss open issues and even [contribute yourself](.github/CONTRIBUTING.md).

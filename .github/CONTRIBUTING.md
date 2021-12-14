@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-<img src="https://wowholic.com/wp-content/themes/wow/img/logo.png" alt="Wowholic logo" width="160px">
+<img src="https://github.com/Wowholic/CORE/raw/master/.github/wow_logo_green.png" alt="Wowholic logo" width="200px">
 
 Before filing a bug report or a feature request, be sure to read the contribution guidelines.
 
