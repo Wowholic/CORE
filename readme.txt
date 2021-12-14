@@ -1,0 +1,77 @@
+=== CORE ===
+Contributors: wowholic
+Donate link: https://wowholic.com
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl.html
+Tags: utility, productivity, efficiency, custom themes, development, frontend
+Requires at least: 5.6
+Tested up to: 5.8
+Stable tag: 1.0
+Requires PHP: 7.0
+
+CORE makes you faster and more efficient when developing custom WordPress sites.
+
+== Description ==
+
+### CORE: WordPress utilities
+
+CORE is a utility-based, unintrusive WordPress plugin. It offers a simple UI to tweak many sensible default settings to quickstart your new fresh WordPress project. It's recommended for developers building custom themes with ACF.
+
+CORE builds on top of Wowholic’s +5 years of experience developing fully custom WordPress sites, for all sorts of customers and industries. We made this plugin to be more efficient and productive in our own work, and we hope it helps you too!
+
+#### Features
+
+* Clean up unnecessary WordPress' defaults:
+	* Remove comments widget styles
+	* Remove WP version from RSS feed
+	* Remove Gutenberg block library CSS (only if Classic Editor plugin is active)
+	* Remove RSD link
+	* Remove post, category and comment feed links
+	* Remove Windows Live Writer link
+	* Remove canonical link
+	* Remove shortlink
+	* Remove relational adjacent links
+	* Remove emoji detection script and styles
+* Disable Theme & Plugin Editors, Widgets Admin Page, Default Post Type and Comments
+* Batch download & install recommended plugins
+* Set up some default redirections (archives, attachment pages...)
+* Set up a visual grid on different breakpoints for debugging layout styles
+* Enable layout spacing utility for debugging distances between elements (using [spacingjs](https://github.com/stevenlei/spacingjs))
+* Add custom format options to TinyMCE *(only if Classic Editor is active)*
+* Allow removing unnecessary buttons from TinyMCE *(only if Classic Editor is active)*
+* Enable Theme Options *(only if ACF is active)*
+* Allow shortcodes in excerpts, textareas and text fields *(only if ACF is active)*
+* Enable `[email]` shortcode for antispam
+* Change WordPress' upload size limit
+
+Some of these features are contextual, which means that they won't show or work unless some condition is met (usually, if a given plugin is active or not).
+
+### Community Feedback
+
+Although already providing many features, this plugin is still in its early stages of development. Please reach out to us for any constructive feedback you might have!
+
+### Contribute
+
+If you want to read contributing guidelines, you can find them at the [GitHub repository](https://github.com/Wowholic/CORE)
+
+== Frequently Asked Questions ==
+
+= I changed the upload size limit, but nothing happened =
+
+You might have noticed that below the upload size limit option, there is the "Hosting provider size limit" label. This indicates the size limit set by your hosting provider. No plugin can modify that value, only you can do it (if given enough permissions). Otherwise, contact your hosting support for help.
+
+= How do I use the email shortcode? =
+
+You can use the email shortcode in any content field that accepts shortcodes. Here's an example: `[email]example@gmail.com[/email]`
+
+== Screenshots ==
+
+1. description for image 1
+2. description for image 2
+
+== Changelog ==
+
+= 1.0.0 =
+Release Date: December 14th, 2021
+
+First release! 🥳
