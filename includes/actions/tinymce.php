@@ -3,13 +3,13 @@
 /**
  * Add extra styles to TinyMCE
  */
-if ( carbon_get_theme_option( 'core_tinymce_extra_styles' ) ) {
+if ( carbon_get_theme_option( 'wowcore_tinymce_extra_styles' ) ) {
 	add_filter( 'tiny_mce_before_init', function ( $settings ) {
-		$core_tinymce = carbon_get_theme_option( 'core_tinymce_extra_styles' );
-		$new_formats  = [];
-		$idx          = 0;
+		$wowcore_tinymce = carbon_get_theme_option( 'wowcore_tinymce_extra_styles' );
+		$new_formats     = [];
+		$idx             = 0;
 
-		foreach ( $core_tinymce as $style ) {
+		foreach ( $wowcore_tinymce as $style ) {
 			$new_formats[ $idx ] = [
 				'title' => $style['title'],
 				'items' => [],
@@ -46,11 +46,11 @@ if ( carbon_get_theme_option( 'core_tinymce_extra_styles' ) ) {
 /**
  * Remove TinyMCE buttons
  */
-if ( carbon_get_theme_option( 'core_remove_tinymce_buttons' ) ) {
-	add_filter( 'mce_buttons', 'core_remove_tinymce_buttons' );
-	add_filter( 'mce_buttons_2', 'core_remove_tinymce_buttons' );
-	function core_remove_tinymce_buttons( $buttons ) {
-		$remove_buttons = carbon_get_theme_option( 'core_remove_tinymce_buttons' );
+if ( carbon_get_theme_option( 'wowcore_remove_tinymce_buttons' ) ) {
+	add_filter( 'mce_buttons', 'wowcore_remove_tinymce_buttons' );
+	add_filter( 'mce_buttons_2', 'wowcore_remove_tinymce_buttons' );
+	function wowcore_remove_tinymce_buttons( $buttons ) {
+		$remove_buttons = carbon_get_theme_option( 'wowcore_remove_tinymce_buttons' );
 
 		foreach ( $buttons as $key => $value ) {
 			if ( in_array( $value, $remove_buttons ) ) {

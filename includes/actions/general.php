@@ -3,7 +3,7 @@
 /**
  * Remove Posts from WP admin panel
  */
-if ( carbon_get_theme_option( 'core_disable_default_post_type' ) ) {
+if ( carbon_get_theme_option( 'wowcore_disable_default_post_type' ) ) {
 	add_action( 'admin_menu', function () {
 		remove_menu_page( 'edit.php' );
 	} );
@@ -12,14 +12,14 @@ if ( carbon_get_theme_option( 'core_disable_default_post_type' ) ) {
 /**
  * Disable theme and plugin editors
  */
-if ( carbon_get_theme_option( 'core_disable_file_edit' ) ) {
+if ( carbon_get_theme_option( 'wowcore_disable_file_edit' ) ) {
 	define( 'DISALLOW_FILE_EDIT', true );
 }
 
 /**
  * Disable comments
  */
-if ( carbon_get_theme_option( 'core_disable_comments' ) ) {
+if ( carbon_get_theme_option( 'wowcore_disable_comments' ) ) {
 	// Redirect any user trying to access comments page
 	add_action( 'admin_init', function () {
 		global $pagenow;
@@ -65,7 +65,7 @@ if ( carbon_get_theme_option( 'core_disable_comments' ) ) {
 /**
  * Hide Widgets page
  */
-if ( carbon_get_theme_option( 'core_hide_widgets_page' ) ) {
+if ( carbon_get_theme_option( 'wowcore_hide_widgets_page' ) ) {
 	add_action( 'admin_init', function () {
 		global $pagenow;
 
@@ -83,9 +83,9 @@ if ( carbon_get_theme_option( 'core_hide_widgets_page' ) ) {
 /**
  * Change upload size limit
  */
-if ( carbon_get_theme_option( 'core_upload_size_limit' ) ) {
+if ( carbon_get_theme_option( 'wowcore_upload_size_limit' ) ) {
 	add_filter( 'upload_size_limit', function () {
-		$size_in_bytes = carbon_get_theme_option( 'core_upload_size_limit' );
+		$size_in_bytes = carbon_get_theme_option( 'wowcore_upload_size_limit' );
 
 		return $size_in_bytes * 1024 * 1024;
 	} );
@@ -94,7 +94,7 @@ if ( carbon_get_theme_option( 'core_upload_size_limit' ) ) {
 /**
  * Email shortcode encrypt.
  */
-if ( carbon_get_theme_option( 'core_encrypt_email_shortcode' ) ) {
+if ( carbon_get_theme_option( 'wowcore_encrypt_email_shortcode' ) ) {
 	add_shortcode( 'email', function ( $atts, $content = null ) {
 		if ( ! is_email( $content ) ) {
 			return;
@@ -110,7 +110,7 @@ if ( carbon_get_theme_option( 'core_encrypt_email_shortcode' ) ) {
 /**
  * AJAX call for installing recommended plugins.
  */
-add_action( 'wp_ajax_core_install_recommended_plugins', function () {
+add_action( 'wp_ajax_wowcore_install_recommended_plugins', function () {
 	try {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			throw new ErrorException( __( 'Not enough permissions.' ) );
@@ -123,9 +123,9 @@ add_action( 'wp_ajax_core_install_recommended_plugins', function () {
 			$provider    = $plugin_data[0];
 			$plugin_slug = $plugin_data[1];
 
-			if ( ! is_plugin_installed( $plugin_slug ) ) {
-				download_plugin( $plugin_slug, $provider );
-				extract_zip( WP_PLUGIN_DIR . '/' . $plugin_slug . '.zip', WP_PLUGIN_DIR );
+			if ( ! wowcore_is_plugin_installed( $plugin_slug ) ) {
+				wowcore_download_plugin( $plugin_slug, $provider );
+				wowcore_extract_zip( WP_PLUGIN_DIR . '/' . $plugin_slug . '.zip', WP_PLUGIN_DIR );
 			}
 		}
 

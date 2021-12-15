@@ -3,9 +3,9 @@
 /**
  * Redirect selected items (categories/tags/author pages).
  */
-if ( count( carbon_get_theme_option( 'core_redirects_home' ) ) > 0 ) {
+if ( count( carbon_get_theme_option( 'wowcore_redirects_home' ) ) > 0 ) {
 	add_action( 'template_redirect', function () {
-		$redirects_home_field = carbon_get_theme_option( 'core_redirects_home' );
+		$redirects_home_field = carbon_get_theme_option( 'wowcore_redirects_home' );
 		foreach ( $redirects_home_field as $type ) {
 			if ( call_user_func( 'is_' . $type ) ) {
 				wp_redirect( '/', 301 );
@@ -17,7 +17,7 @@ if ( count( carbon_get_theme_option( 'core_redirects_home' ) ) > 0 ) {
 /**
  * Redirect attachment pages to the file URL
  */
-if ( carbon_get_theme_option( 'core_redirect_media' ) ) {
+if ( carbon_get_theme_option( 'wowcore_redirect_media' ) ) {
 	add_action( 'template_redirect', function () {
 		if ( is_attachment() ) {
 			$url = wp_get_attachment_url( get_queried_object_id() );

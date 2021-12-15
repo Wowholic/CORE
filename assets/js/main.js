@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const pluginsBtn = document.querySelector('#core-install-recommended-plugins');
-    const pleaseWaitBox = document.querySelector('.core-install-plugins-wait');
+    const pluginsBtn = document.querySelector('#wowcore-install-recommended-plugins');
+    const pleaseWaitBox = document.querySelector('.wowcore-install-plugins-wait');
     pluginsBtn.addEventListener('click', async (evt) => {
         evt.preventDefault();
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pleaseWaitBox.style.display = 'block';
 
         const data = {
-            action: 'core_install_recommended_plugins',
+            action: 'wowcore_install_recommended_plugins',
             plugins: recommendedPlugins,
         };
 

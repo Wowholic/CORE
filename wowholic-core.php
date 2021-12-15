@@ -12,11 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CORE_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
-define( 'CORE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'WOWCORE_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'WOWCORE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-define( 'Carbon_Fields\URL', CORE_PLUGIN_URL . 'vendor/htmlburger/carbon-fields/' );
+define( 'Carbon_Fields\URL', WOWCORE_PLUGIN_URL . 'vendor/htmlburger/carbon-fields/' );
 
-require_once( CORE_PLUGIN_PATH . 'includes/utils.php' );
-require_once( CORE_PLUGIN_PATH . 'includes/boot.php' );
-require_once( CORE_PLUGIN_PATH . 'includes/settings-page.php' );
+require_once( WOWCORE_PLUGIN_PATH . 'includes/utils.php' );
+require_once( WOWCORE_PLUGIN_PATH . 'includes/boot.php' );
+require_once( WOWCORE_PLUGIN_PATH . 'includes/settings-page.php' );

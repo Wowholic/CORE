@@ -5,7 +5,7 @@
  *
  * @return string[][]
  */
-function get_recommended_plugins(): array {
+function wowcore_get_recommended_plugins(): array {
 	return [
 		[
 			'provider' => 'wp',
@@ -51,7 +51,7 @@ function get_recommended_plugins(): array {
  * @param $plugin_slug
  * @param $provider
  */
-function download_plugin( $plugin_slug, $provider ) {
+function wowcore_download_plugin( $plugin_slug, $provider ) {
 	if ( $provider === 'wp' ) {
 		$filename = 'https://downloads.wordpress.org/plugin/' . $plugin_slug . '.zip';
 	}
@@ -65,7 +65,7 @@ function download_plugin( $plugin_slug, $provider ) {
  * @param $file_location
  * @param $extract_to
  */
-function extract_zip( $file_location, $extract_to ) {
+function wowcore_extract_zip( $file_location, $extract_to ) {
 	if ( ! file_exists( $file_location ) ) {
 		return;
 	}
@@ -87,7 +87,7 @@ function extract_zip( $file_location, $extract_to ) {
  *
  * @return bool
  */
-function is_plugin_installed( $plugin_slug ): bool {
+function wowcore_is_plugin_installed( $plugin_slug ): bool {
 	if ( ! function_exists( 'is_plugin_active' ) ) {
 		include_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 	}
@@ -108,7 +108,7 @@ function is_plugin_installed( $plugin_slug ): bool {
  *
  * @return bool
  */
-function is_plugin_active_by_slug( $plugin_slug ): bool {
+function wowcore_is_plugin_active_by_slug( $plugin_slug ): bool {
 	if ( ! function_exists( 'is_plugin_active' ) ) {
 		include_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 	}
@@ -129,7 +129,7 @@ function is_plugin_active_by_slug( $plugin_slug ): bool {
  *
  * @return string
  */
-function get_hosting_max_filesize(): string {
+function wowcore_get_hosting_max_filesize(): string {
 	$ini_size = ini_get( "upload_max_filesize" );
 
 	if ( ! $ini_size ) {
@@ -148,19 +148,19 @@ function get_hosting_max_filesize(): string {
  *
  * @return false|string
  */
-function get_install_plugins_html() {
+function wowcore_get_install_plugins_html() {
 	ob_start();
 	$all_installed = true; ?>
 
     <strong><?php _e( 'Install recommended plugins' ) ?></strong>
     <ul id="recommended-plugins"> <?php
-		foreach ( get_recommended_plugins() as $plugin ) : ?>
+		foreach ( wowcore_get_recommended_plugins() as $plugin ) : ?>
             <li> <?php
-				if ( ! is_plugin_installed( $plugin['slug'] ) ) :
+				if ( ! wowcore_is_plugin_installed( $plugin['slug'] ) ) :
 					$all_installed = false; ?>
-                    <input id="core-<?php echo $plugin['slug']; ?>" type="checkbox"
+                    <input id="wowcore-<?php echo $plugin['slug']; ?>" type="checkbox"
                            value="<?php echo $plugin['provider']; ?>---<?php echo $plugin['slug']; ?>" name="plugins">
-                    <label for="core-<?php echo $plugin['slug']; ?>"><?php echo $plugin['name']; ?></label> <?php
+                    <label for="wowcore-<?php echo $plugin['slug']; ?>"><?php echo $plugin['name']; ?></label> <?php
 				else : ?>
                     <p><?php echo $plugin['name']; ?> <?php _e( 'is already installed' ) ?>.</p> <?php
 				endif; ?>
@@ -169,9 +169,9 @@ function get_install_plugins_html() {
     </ul> <?php
 
 	if ( ! $all_installed ) : ?>
-        <button id="core-install-recommended-plugins"
+        <button id="wowcore-install-recommended-plugins"
                 class="button button-primary button-large"><?php _e( 'Install' ) ?></button>
-        <div class="core-install-plugins-wait">
+        <div class="wowcore-install-plugins-wait">
             <span class="spinner is-active"></span>
 			<?php _e( 'Downloading and installing plugins. Please wait...' ) ?>
         </div> <?php

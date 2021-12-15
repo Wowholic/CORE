@@ -2,12 +2,12 @@
     cursor: pointer;
 }
 
-.core-install-plugins-wait {
+.wowcore-install-plugins-wait {
     display: none;
     margin-top: 1rem;
 }
 
-.core-install-plugins-wait .spinner {
+.wowcore-install-plugins-wait .spinner {
     float: none;
     margin: 0;
     margin-right: 0.25rem;

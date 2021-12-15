@@ -4,7 +4,7 @@
  * Show grid
  */
 
-if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
+if ( carbon_get_theme_option( 'wowcore_enable_grid' ) ) {
 	/**
 	 * @param $width
 	 * @param $padding
@@ -13,27 +13,27 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
 	 *
 	 * @return string
 	 */
-	function core_grid_generate_breakpoints( $width, $padding, $columns, $gutter ): string {
+	function wowcore_grid_generate_breakpoints( $width, $padding, $columns, $gutter ): string {
 		return "
-		.core-grid .core-grid_container {
+		.wowcore-grid .wowcore-grid_container {
             max-width: " . $width . "px;
             margin: 0 auto;
             padding: 0 " . $padding . "px;
         }
 
-        .core-grid .core-grid_row {
+        .wowcore-grid .wowcore-grid_row {
             display: flex;
             margin: 0 " . $gutter / - 2 . "px;
         }
 
-        .core-grid .core-grid_col {
+        .wowcore-grid .wowcore-grid_col {
             flex: 0 0 " . 100 / $columns . "%;
             max-width: " . 100 / $columns . "%;
             padding: 0 " . $gutter / 2 . "px;
             display: none;
         }
 
-        .core-grid .core-grid_col:nth-child(-n + $columns) {
+        .wowcore-grid .wowcore-grid_col:nth-child(-n + $columns) {
             display: block;
         }";
 	}
@@ -45,9 +45,9 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
 	 *
 	 * @return string
 	 */
-	function core_grid_base_css( $color ): string {
+	function wowcore_grid_base_css( $color ): string {
 		return "
-        .core-toggle-grid {
+        .wowcore-toggle-grid {
             position: fixed;
             top: 120px;
             right: 0;
@@ -65,24 +65,24 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
             cursor: pointer;
         }
 
-        .core-toggle-grid svg {
+        .wowcore-toggle-grid svg {
             width: 20px;
             height: auto;
         }
 
-        .core-toggle-grid svg:last-child {
+        .wowcore-toggle-grid svg:last-child {
             display: none;
         }
 
-        .core-toggle-grid.is-active svg:last-child {
+        .wowcore-toggle-grid.is-active svg:last-child {
             display: block;
         }
 
-        .core-toggle-grid.is-active svg:first-child {
+        .wowcore-toggle-grid.is-active svg:first-child {
             display: none;
         }
 
-        .core-grid {
+        .wowcore-grid {
             position: fixed;
             top: 0;
             left: 0;
@@ -93,11 +93,11 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
             pointer-events: none;
         }
 
-        .core-grid.is-active {
+        .wowcore-grid.is-active {
             display: block;
         }
 
-        .core-grid .core-grid_col span {
+        .wowcore-grid .wowcore-grid_col span {
             display: block;
             height: 100vh;
             background: $color
@@ -107,40 +107,40 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
 	/**
 	 * Add grid css
 	 */
-	function core_add_grid_css() {
-		$color       = carbon_get_theme_option( 'core_grid_color' );
-		$breakpoints = carbon_get_theme_option( 'core_grid_breakpoints' );
+	function wowcore_add_grid_css() {
+		$color       = carbon_get_theme_option( 'wowcore_grid_color' );
+		$breakpoints = carbon_get_theme_option( 'wowcore_grid_breakpoints' );
 
 		usort( $breakpoints, function ( $item1, $item2 ) {
-			return $item1['core_grid_breakpoint'] <=> $item2['core_grid_breakpoint'];
+			return $item1['wowcore_grid_breakpoint'] <=> $item2['wowcore_grid_breakpoint'];
 		} );
 
 		echo "<style>";
 
-		echo esc_html( core_grid_base_css( $color ) );
+		echo esc_html( wowcore_grid_base_css( $color ) );
 
 		for ( $i = 0; $i < count( $breakpoints ); $i ++ ) {
 			$breakpoint_item = $breakpoints[ $i ];
-			$width           = $breakpoint_item['core_grid_width'];
-			$padding         = $breakpoint_item['core_grid_padding'];
-			$columns         = $breakpoint_item['core_grid_columns'];
-			$gutter          = $breakpoint_item['core_grid_gutter'];
+			$width           = $breakpoint_item['wowcore_grid_width'];
+			$padding         = $breakpoint_item['wowcore_grid_padding'];
+			$columns         = $breakpoint_item['wowcore_grid_columns'];
+			$gutter          = $breakpoint_item['wowcore_grid_gutter'];
 
 			if ( count( $breakpoints ) > 1 ) {
-				$breakpoint_min = $breakpoint_item['core_grid_breakpoint'];
+				$breakpoint_min = $breakpoint_item['wowcore_grid_breakpoint'];
 
 				if ( $i === 0 ) {
-					$breakpoint_max = $breakpoints[ $i + 1 ]['core_grid_breakpoint'] - 1;
+					$breakpoint_max = $breakpoints[ $i + 1 ]['wowcore_grid_breakpoint'] - 1;
 					echo esc_html( "@media (max-width: " . $breakpoint_max . "px) {\n" );
 				} elseif ( $i === ( count( $breakpoints ) - 1 ) ) {
 					echo esc_html( "@media (min-width: " . $breakpoint_min . "px) {\n" );
 				} else {
-					$breakpoint_max = $breakpoints[ $i + 1 ]['core_grid_breakpoint'] - 1;
+					$breakpoint_max = $breakpoints[ $i + 1 ]['wowcore_grid_breakpoint'] - 1;
 					echo esc_html( "@media (min-width: " . $breakpoint_min . "px) and (max-width: " . $breakpoint_max . "px) {\n" );
 				}
 			}
 
-			echo esc_html( core_grid_generate_breakpoints( $width, $padding, $columns, $gutter ) );
+			echo esc_html( wowcore_grid_generate_breakpoints( $width, $padding, $columns, $gutter ) );
 
 			if ( count( $breakpoints ) > 1 ) {
 				echo "}\n";
@@ -153,16 +153,16 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
 	/**
 	 * Add grid html
 	 */
-	function core_add_grid() {
-		$breakpoints = carbon_get_theme_option( 'core_grid_breakpoints' );
+	function wowcore_add_grid() {
+		$breakpoints = carbon_get_theme_option( 'wowcore_grid_breakpoints' );
 
 		usort( $breakpoints, function ( $item1, $item2 ) {
-			return $item1['core_grid_columns'] <=> $item2['core_grid_columns'];
+			return $item1['wowcore_grid_columns'] <=> $item2['wowcore_grid_columns'];
 		} );
 
-		$columns = end( $breakpoints )['core_grid_columns'];
+		$columns = end( $breakpoints )['wowcore_grid_columns'];
 		?>
-        <button class="core-toggle-grid js-core-toggle-grid is-active">
+        <button class="wowcore-toggle-grid js-wowcore-toggle-grid is-active">
             <svg width="512px" height="350px" viewBox="0 0 512 350" version="1.1" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -191,19 +191,19 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
                 </g>
             </svg>
         </button>
-        <div class="core-grid js-core-grid is-active">
-            <div class="core-grid_container">
-                <div class="core-grid_row">
+        <div class="wowcore-grid js-wowcore-grid is-active">
+            <div class="wowcore-grid_container">
+                <div class="wowcore-grid_row">
 					<?php for ( $i = 0; $i < intval( $columns ); $i ++ ): ?>
-                        <div class="core-grid_col"><span></span></div>
+                        <div class="wowcore-grid_col"><span></span></div>
 					<?php endfor; ?>
                 </div>
             </div>
         </div>
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', () => {
-                var toggleGrid = document.querySelector('.js-core-toggle-grid');
-                var coreGrid = document.querySelector('.js-core-grid');
+                var toggleGrid = document.querySelector('.js-wowcore-toggle-grid');
+                var coreGrid = document.querySelector('.js-wowcore-grid');
                 toggleGrid.addEventListener('click', () => {
                     toggleGrid.classList.toggle('is-active');
                     coreGrid.classList.toggle('is-active');
@@ -213,6 +213,6 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
 		<?php
 	}
 
-	add_action( 'wp_head', 'core_add_grid_css', 100 );
-	add_action( 'wp_footer', 'core_add_grid', 100 );
+	add_action( 'wp_head', 'wowcore_add_grid_css', 100 );
+	add_action( 'wp_footer', 'wowcore_add_grid', 100 );
 }
