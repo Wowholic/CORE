@@ -117,7 +117,7 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
 
 		echo "<style>";
 
-		echo core_grid_base_css( $color );
+		echo esc_html( core_grid_base_css( $color ) );
 
 		for ( $i = 0; $i < count( $breakpoints ); $i ++ ) {
 			$breakpoint_item = $breakpoints[ $i ];
@@ -131,16 +131,16 @@ if ( carbon_get_theme_option( 'core_enable_grid' ) ) {
 
 				if ( $i === 0 ) {
 					$breakpoint_max = $breakpoints[ $i + 1 ]['core_grid_breakpoint'] - 1;
-					echo "@media (max-width: " . $breakpoint_max . "px) {\n";
+					echo esc_html( "@media (max-width: " . $breakpoint_max . "px) {\n" );
 				} elseif ( $i === ( count( $breakpoints ) - 1 ) ) {
-					echo "@media (min-width: " . $breakpoint_min . "px) {\n";
+					echo esc_html( "@media (min-width: " . $breakpoint_min . "px) {\n" );
 				} else {
 					$breakpoint_max = $breakpoints[ $i + 1 ]['core_grid_breakpoint'] - 1;
-					echo "@media (min-width: " . $breakpoint_min . "px) and (max-width: " . $breakpoint_max . "px) {\n";
+					echo esc_html( "@media (min-width: " . $breakpoint_min . "px) and (max-width: " . $breakpoint_max . "px) {\n" );
 				}
 			}
 
-			echo core_grid_generate_breakpoints( $width, $padding, $columns, $gutter );
+			echo esc_html( core_grid_generate_breakpoints( $width, $padding, $columns, $gutter ) );
 
 			if ( count( $breakpoints ) > 1 ) {
 				echo "}\n";
