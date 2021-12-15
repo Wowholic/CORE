@@ -116,7 +116,7 @@ add_action( 'wp_ajax_core_install_recommended_plugins', function () {
 			throw new ErrorException( __( 'Not enough permissions.' ) );
 		}
 
-		$plugins = explode( ',', $_POST['plugins'] );
+		$plugins = explode( ',', sanitize_text_field( $_POST['plugins'] ) );
 
 		foreach ( $plugins as $plugin_data ) {
 			$plugin_data = explode( '---', $plugin_data );
