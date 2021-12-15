@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: utility, productivity, efficiency, custom themes, development, frontend
 Requires at least: 5.6
 Tested up to: 5.8
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Requires PHP: 7.0
 
 CORE makes you faster and more efficient when developing custom WordPress sites.
@@ -76,7 +76,7 @@ You can use the email shortcode in any content field that accepts shortcodes. He
 
 == Changelog ==
 
-= 1.0.0 =
-Release Date: December 14th, 2021
+= 1.0.3 =
+Release Date: December 15th, 2021
 
-First release! 🥳
+First public release! 🥳
