@@ -66,8 +66,13 @@ You can use the email shortcode in any content field that accepts shortcodes. He
 
 == Screenshots ==
 
-1. description for image 1
-2. description for image 2
+1. General Tab
+2. Redirects Tab
+3. Grid Tab
+4. Layout Tab
+5. ACF Tab
+6. TinyMCE Tab
+7. Grid feature & spacingjs working in the frontend
 
 == Changelog ==
 
