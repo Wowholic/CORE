@@ -158,11 +158,12 @@ function wowcore_get_install_plugins_html() {
             <li> <?php
 				if ( ! wowcore_is_plugin_installed( $plugin['slug'] ) ) :
 					$all_installed = false; ?>
-                    <input id="wowcore-<?php echo $plugin['slug']; ?>" type="checkbox"
-                           value="<?php echo $plugin['provider']; ?>---<?php echo $plugin['slug']; ?>" name="plugins">
-                    <label for="wowcore-<?php echo $plugin['slug']; ?>"><?php echo $plugin['name']; ?></label> <?php
+                    <input id="wowcore-<?php echo esc_attr( $plugin['slug'] ); ?>" type="checkbox"
+                           value="<?php echo esc_attr( $plugin['provider'] ); ?>---<?php echo esc_attr( $plugin['slug'] ); ?>"
+                           name="plugins">
+                    <label for="wowcore-<?php echo esc_attr( $plugin['slug'] ); ?>"><?php echo esc_html( $plugin['name'] ); ?></label> <?php
 				else : ?>
-                    <p><?php echo $plugin['name']; ?> <?php _e( 'is already installed' ) ?>.</p> <?php
+                    <p><?php echo esc_html( $plugin['name'] ); ?> <?php _e( 'is already installed' ) ?>.</p> <?php
 				endif; ?>
             </li> <?php
 		endforeach; ?>
