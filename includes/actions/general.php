@@ -95,15 +95,29 @@ if ( carbon_get_theme_option( 'wowcore_upload_size_limit' ) ) {
  * Email shortcode encrypt.
  */
 if ( carbon_get_theme_option( 'wowcore_encrypt_email_shortcode' ) ) {
-	add_shortcode( 'email', function ( $atts, $content = null ) {
+	add_shortcode( 'email', function ( $atts = [], $content = null ) {
+        $atts = array_change_key_case( (array) $atts, CASE_LOWER );
+        $array_atts = shortcode_atts(
+            array(
+                'title' => '',
+            ), $atts
+        );
+
 		if ( ! is_email( $content ) ) {
 			return;
 		}
 
+        if ( $array_atts['title'] ) {
+            $title = esc_html__( $array_atts['title'], '' );
+        }
+        else {
+            $title = '%s';
+        }
+
 		$content    = antispambot( $content );
 		$email_link = sprintf( 'mailto:%s', $content );
 
-		return sprintf( '<a href="%s">%s</a>', esc_url( $email_link, array( 'mailto' ) ), esc_html( $content ) );
+		return sprintf( '<a href="%s">'  . $title . '</a>', esc_url( $email_link, array( 'mailto' ) ), esc_html( $content ) );
 	} );
 }
 

@@ -11,8 +11,10 @@ add_action( 'carbon_fields_register_fields', function () {
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_disable_file_edit', __( 'Disable Theme & Plugin Editors' ) )
 		     ->set_default_value( true ),
-		Field::make( 'checkbox', 'wowcore_disable_default_post_type', __( 'Disable default Post type' ) ),
-		Field::make( 'checkbox', 'wowcore_disable_comments', __( 'Disable comments' ) ),
+		Field::make( 'checkbox', 'wowcore_disable_default_post_type', __( 'Disable default Post type' ) )
+			 ->set_default_value( true ),
+		Field::make( 'checkbox', 'wowcore_disable_comments', __( 'Disable comments' ) )
+			 ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_hide_widgets_page', __( 'Hide Widgets page' ) )
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_encrypt_email_shortcode', __( 'Enable [email] shortcode for encrypting addresses' ) )
@@ -39,7 +41,8 @@ add_action( 'carbon_fields_register_fields', function () {
 			     'tag'      => 'Tag archives',
 			     'date'     => 'Date archives',
 			     'author'   => 'Author pages',
-		     ] ),
+		     ] )
+			 ->set_default_value( array( 'category', 'tag', 'date', 'author' ) ),
 		Field::make( 'checkbox', 'wowcore_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 
