@@ -3,7 +3,7 @@
  * Plugin Name: Wowholic CORE
  * Plugin URI: https://github.com/Wowholic/CORE
  * Description: Utility functions and options for common tasks in WordPress.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Wowholic
  * Author URI: https://wowholic.com
  **/
