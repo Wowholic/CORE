@@ -17,6 +17,15 @@ if ( carbon_get_theme_option( 'wowcore_disable_file_edit' ) ) {
 }
 
 /**
+ * Disable Full Site Editing
+ */
+if ( carbon_get_theme_option( 'wowcore_disable_fse' ) ) {
+	add_action( 'admin_menu', function () {
+		remove_submenu_page( 'themes.php', 'site-editor.php' );
+	} );
+}
+
+/**
  * Disable comments
  */
 if ( carbon_get_theme_option( 'wowcore_disable_comments' ) ) {
