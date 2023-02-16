@@ -191,8 +191,7 @@ if ( carbon_get_theme_option( 'wowcore_enable_grid' ) ) {
                 </g>
             </svg>
         </button>
-        
-        <?php if ( is_user_logged_in() ) { ?>
+
         <div class="wowcore-grid js-wowcore-grid is-active">
             <div class="wowcore-grid_container">
                 <div class="wowcore-grid_row">
@@ -202,8 +201,7 @@ if ( carbon_get_theme_option( 'wowcore_enable_grid' ) ) {
                 </div>
             </div>
         </div>
-        <?php } ?>
-        
+
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', () => {
                 var toggleGrid = document.querySelector('.js-wowcore-toggle-grid');
