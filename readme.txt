@@ -76,6 +76,9 @@ You can use the email shortcode in any content field that accepts shortcodes. He
 
 == Changelog ==
 
+= 1.0.6 =
+Release Date: february 16th, 2023
+
 = 1.0.5 =
 Release Date: November 3rd, 2022
 

@@ -6,6 +6,9 @@ if ( carbon_get_theme_option( 'wowcore_cleanup_wp_defaults' ) ) {
 	// Launching operation cleanup.
 	add_action( 'init', 'wowcore_cleanup_head' );
 
+	// Remove global styles and SVG filters
+	add_action( 'init', 'wowcore_remove_global_style_and_svg_filters' );
+
 	// Remove WP version from RSS.
 	add_filter( 'the_generator', '__return_empty_string' );
 
@@ -18,6 +21,7 @@ if ( carbon_get_theme_option( 'wowcore_cleanup_wp_defaults' ) ) {
 	// Remove gutenberg block library css
 	add_action( 'wp_enqueue_scripts', 'wowcore_remove_wp_block_library_css' );
 
+	// Cleanup head
 	function wowcore_cleanup_head() {
 		// EditURI link.
 		remove_action( 'wp_head', 'rsd_link' );
@@ -48,6 +52,14 @@ if ( carbon_get_theme_option( 'wowcore_cleanup_wp_defaults' ) ) {
 
 		// Emoji styles.
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	}
+
+	// Remove global styles and SVG filters
+	function wowcore_remove_global_style_and_svg_filters() {
+		if ( wowcore_is_plugin_active_by_slug( 'classic-editor' ) ) {
+			remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+			remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+		}
 	}
 
 	// Remove injected CSS for recent comments widget.
