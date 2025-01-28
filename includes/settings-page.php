@@ -192,9 +192,6 @@ add_action( 'carbon_fields_register_fields', function () {
 				     'pre' => 'Preformatted',
 			     ] )
 			     ->set_default_value( [
-				     'h4',
-				     'h5',
-				     'h6',
 				     'pre',
 			     ] ),
 		];
