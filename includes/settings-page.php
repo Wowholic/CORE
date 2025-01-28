@@ -74,7 +74,7 @@ add_action( 'carbon_fields_register_fields', function () {
 			          ->set_attribute( 'min', 0 )
 			          ->set_default_value( '32' )
 			          ->set_width( 20 ),
-			     Field::make( 'text', 'wowcore_grid_columns', __( 'Number of columns (px)' ) )
+			     Field::make( 'text', 'wowcore_grid_columns', __( 'Number of columns' ) )
 			          ->set_attribute( 'type', 'number' )
 			          ->set_attribute( 'min', 0 )
 			          ->set_default_value( '12' )
