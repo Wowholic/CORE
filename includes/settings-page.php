@@ -41,8 +41,9 @@ add_action( 'carbon_fields_register_fields', function () {
 			     'tag'      => 'Tag archives',
 			     'date'     => 'Date archives',
 			     'author'   => 'Author pages',
+			     'search'   => 'Search results',
 		     ] )
-		     ->set_default_value( array( 'category', 'tag', 'date', 'author' ) ),
+		     ->set_default_value( array( 'category', 'tag', 'date', 'author', 'search' ) ),
 		Field::make( 'checkbox', 'wowcore_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 
