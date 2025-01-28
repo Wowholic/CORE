@@ -96,27 +96,38 @@ if ( carbon_get_theme_option( 'wowcore_upload_size_limit' ) ) {
  */
 if ( carbon_get_theme_option( 'wowcore_encrypt_email_shortcode' ) ) {
 	add_shortcode( 'email', function ( $atts = [], $content = null ) {
-        $atts = array_change_key_case( (array) $atts, CASE_LOWER );
-        $array_atts = shortcode_atts(
-            array(
-                'title' => '',
-            ), $atts
-        );
+		$atts       = array_change_key_case( (array) $atts, CASE_LOWER );
+		$array_atts = shortcode_atts(
+			array(
+				'title' => '',
+			), $atts
+		);
 
 		if ( ! is_email( $content ) ) {
 			return;
 		}
 
-        if ( $array_atts['title'] ) {
-            $title = esc_html__( $array_atts['title'], '' );
-        }
-        else {
-            $title = '%s';
-        }
+		if ( $array_atts['title'] ) {
+			$title = esc_html__( $array_atts['title'], '' );
+		} else {
+			$title = '%s';
+		}
 
 		$content    = antispambot( $content );
 		$email_link = sprintf( 'mailto:%s', $content );
 
-		return sprintf( '<a href="%s">'  . $title . '</a>', esc_url( $email_link, array( 'mailto' ) ), esc_html( $content ) );
+		return sprintf( '<a href="%s">' . $title . '</a>', esc_url( $email_link, array( 'mailto' ) ), esc_html( $content ) );
+	} );
+}
+
+/**
+ * Pretty Search URL
+ */
+if ( carbon_get_theme_option( 'wowcore_encrypt_pretty_search_url' ) ) {
+	add_action( 'template_redirect', function () {
+		if ( is_search() && ! empty( $_GET['s'] ) ) {
+			wp_redirect( home_url( "/search/" ) . urlencode( get_query_var( 's' ) ) );
+			exit();
+		}
 	} );
 }

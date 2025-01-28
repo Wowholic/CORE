@@ -19,6 +19,8 @@ add_action( 'carbon_fields_register_fields', function () {
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_encrypt_email_shortcode', __( 'Enable [email] shortcode for encrypting addresses' ) )
 		     ->set_default_value( true ),
+		Field::make( 'checkbox', 'wowcore_encrypt_pretty_search_url', __( 'Pretty Search URL' ) )
+		     ->set_default_value( true ),
 		Field::make( 'select', 'wowcore_upload_size_limit', __( 'Upload size limit' ) )
 		     ->set_options( [
 			     32   => '32MB',
