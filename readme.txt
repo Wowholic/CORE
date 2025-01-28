@@ -3,7 +3,7 @@ Contributors: wowholic
 Donate link: https://wowholic.com
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Tags: utility, productivity, efficiency, custom themes, development, frontend
+Tags: utility, productivity, efficiency, custom themes, development
 Requires at least: 5.6
 Tested up to: 6.7.1
 Stable tag: 1.0.9
@@ -33,7 +33,6 @@ CORE builds on top of Wowholic’s +5 years of experience developing fully custo
 	* Remove relational adjacent links
 	* Remove emoji detection script and styles
 * Disable Theme & Plugin Editors, Widgets Admin Page, Default Post Type and Comments
-* Batch download & install recommended plugins
 * Set up some default redirections (archives, attachment pages...)
 * Set up a visual grid on different breakpoints for debugging layout styles
 * Enable layout spacing utility for debugging distances between elements (using [spacingjs](https://github.com/stevenlei/spacingjs))

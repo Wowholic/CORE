@@ -12,9 +12,9 @@ add_action( 'carbon_fields_register_fields', function () {
 		Field::make( 'checkbox', 'wowcore_disable_file_edit', __( 'Disable Theme & Plugin Editors' ) )
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_disable_default_post_type', __( 'Disable default Post type' ) )
-			 ->set_default_value( true ),
+		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_disable_comments', __( 'Disable comments' ) )
-			 ->set_default_value( true ),
+		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_hide_widgets_page', __( 'Hide Widgets page' ) )
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_encrypt_email_shortcode', __( 'Enable [email] shortcode for encrypting addresses' ) )
@@ -30,8 +30,6 @@ add_action( 'carbon_fields_register_fields', function () {
 		     ] )
 		     ->set_default_value( 256 )
 		     ->set_help_text( 'Hosting provider size limit: ' . wowcore_get_hosting_max_filesize() . '. <a href="' . admin_url( 'site-health.php?tab=debug' ) . '">View more server details</a>' ),
-		Field::make( 'html', 'wowcore_install_plugins', __( 'Install recommended plugins' ) )
-		     ->set_html( 'wowcore_get_install_plugins_html' ),
 	];
 
 	$redirects_fields = [
@@ -42,7 +40,7 @@ add_action( 'carbon_fields_register_fields', function () {
 			     'date'     => 'Date archives',
 			     'author'   => 'Author pages',
 		     ] )
-			 ->set_default_value( array( 'category', 'tag', 'date', 'author' ) ),
+		     ->set_default_value( array( 'category', 'tag', 'date', 'author' ) ),
 		Field::make( 'checkbox', 'wowcore_redirect_media', __( 'Redirect attachment pages to the file URL' ) ),
 	];
 

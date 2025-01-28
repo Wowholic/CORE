@@ -1,14 +1,3 @@
 .cf-container__tabs-list > .cf-container__tabs-item > button {
     cursor: pointer;
 }
-
-.wowcore-install-plugins-wait {
-    display: none;
-    margin-top: 1rem;
-}
-
-.wowcore-install-plugins-wait .spinner {
-    float: none;
-    margin: 0;
-    margin-right: 0.25rem;
-}
