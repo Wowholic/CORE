@@ -61,3 +61,38 @@ if ( carbon_get_theme_option( 'wowcore_remove_tinymce_buttons' ) ) {
 		return $buttons;
 	}
 }
+
+/*
+ *  Remove TinyMCE headlines
+ */
+if ( carbon_get_theme_option( 'wowcore_remove_tinymce_headlines' ) ) {
+	$headlines_to_remove = carbon_get_theme_option( 'wowcore_remove_tinymce_headlines' );
+
+	add_filter( 'tiny_mce_before_init', function ( $init_array ) use ( $headlines_to_remove ) {
+		$default_formats = [
+			'Paragraph=p',
+			'Heading 1=h1',
+			'Heading 2=h2',
+			'Heading 3=h3',
+			'Heading 4=h4',
+			'Heading 5=h5',
+			'Heading 6=h6',
+			'Preformatted=pre',
+		];
+
+		$filtered_formats = array_filter( $default_formats, function ( $format ) use ( $headlines_to_remove ) {
+			foreach ( $headlines_to_remove as $headline ) {
+				if ( str_contains( $format, $headline ) ) {
+					return false;
+				}
+			}
+
+			return true;
+		} );
+
+
+		$init_array['block_formats'] = implode( ';', $filtered_formats );
+
+		return $init_array;
+	} );
+}

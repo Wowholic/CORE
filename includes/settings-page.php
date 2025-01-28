@@ -181,6 +181,22 @@ add_action( 'carbon_fields_register_fields', function () {
 				     'outdent',
 				     'indent',
 			     ] ),
+			Field::make( 'set', 'wowcore_remove_tinymce_headlines', __( 'Headlines to remove' ) )
+			     ->set_options( [
+				     'h1'  => 'H1',
+				     'h2'  => 'H2',
+				     'h3'  => 'H3',
+				     'h4'  => 'H4',
+				     'h5'  => 'H5',
+				     'h6'  => 'H6',
+				     'pre' => 'Preformatted',
+			     ] )
+			     ->set_default_value( [
+				     'h4',
+				     'h5',
+				     'h6',
+				     'pre',
+			     ] ),
 		];
 
 		$container->add_tab( __( 'TinyMCE' ), $tinymce_fields );
