@@ -62,6 +62,19 @@ if ( carbon_get_theme_option( 'wowcore_remove_tinymce_buttons' ) ) {
 	}
 }
 
+/**
+ * Force TinyMCE second row to show if wp_adv is unchecked
+ */
+add_filter( 'tiny_mce_before_init', function ( $init ) {
+	$remove_buttons = carbon_get_theme_option( 'wowcore_remove_tinymce_buttons' ) ?? [];
+
+	if ( in_array( 'wp_adv', $remove_buttons ) ) {
+		$init['wordpress_adv_hidden'] = false;
+	}
+
+	return $init;
+} );
+
 /*
  *  Remove TinyMCE headlines
  */
