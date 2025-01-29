@@ -32,3 +32,25 @@ if ( carbon_get_theme_option( 'wowcore_hide_acf_menu' ) ) {
 		return current_user_can( 'manage_options' );
 	} );
 }
+
+/**
+ * Add label next to Flexible Content Layout name
+ */
+if ( carbon_get_theme_option( 'wowcore_acf_flexible_contents' ) ) {
+	$flexible_contents = carbon_get_theme_option( 'wowcore_acf_flexible_contents' ) ?? [];
+
+	if ( count( $flexible_contents ) > 0 ) {
+		foreach ( $flexible_contents as $flexible_content ) {
+			$flexible_content_name = $flexible_content['flexible_content_name'];
+			$title_field_name      = $flexible_content['title_field_name'];
+
+			add_filter( 'acf/fields/flexible_content/layout_title/name=' . $flexible_content_name, function ( $title, $field, $layout, $i ) use ( $title_field_name ) {
+				if ( $text = get_sub_field( $title_field_name ) ) {
+					$title .= ' - <b>' . esc_html( $text ) . '</b>';
+				}
+
+				return $title;
+			}, 10, 4 );
+		}
+	}
+}

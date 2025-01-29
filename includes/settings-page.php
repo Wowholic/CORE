@@ -108,6 +108,28 @@ add_action( 'carbon_fields_register_fields', function () {
 			Field::make( 'checkbox', 'wowcore_hide_acf_menu', __( 'Hide ACF menu for non-admins' ) ),
 		];
 
+		if ( acf_get_setting( 'pro' ) ) {
+			$acf_header_template = '
+		    <% if (flexible_content_name) { %>
+		        <%- flexible_content_name %>
+		    <% } %>
+		    ';
+
+			$acf_fields[] = Field::make( 'complex', 'wowcore_acf_flexible_contents', __( 'Add label next to Flexible Content Layout name' ) )
+			                     ->setup_labels( [
+				                     'plural_name'   => 'Flexible Contents',
+				                     'singular_name' => 'Flexible Content',
+			                     ] )
+			                     ->add_fields( [
+				                     Field::make( 'text', 'flexible_content_name', __( 'Flexible Content Name' ) )
+				                          ->set_width( 50 ),
+				                     Field::make( 'text', 'title_field_name', __( 'Title Field Name' ) )
+				                          ->set_width( 50 ),
+			                     ] )
+			                     ->set_header_template( $acf_header_template )
+			                     ->set_collapsed( true );
+		}
+
 		$container->add_tab( __( 'ACF' ), $acf_fields );
 	}
 
