@@ -204,12 +204,15 @@ if ( carbon_get_theme_option( 'wowcore_enable_grid' ) ) {
 
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', () => {
-                var toggleGrid = document.querySelector('.js-wowcore-toggle-grid');
-                var coreGrid = document.querySelector('.js-wowcore-grid');
-                toggleGrid.addEventListener('click', () => {
-                    toggleGrid.classList.toggle('is-active');
-                    coreGrid.classList.toggle('is-active');
-                });
+                const toggleGrid = document.querySelector('.js-wowcore-toggle-grid');
+                const coreGrid = document.querySelector('.js-wowcore-grid');
+
+                if (toggleGrid && coreGrid) {
+                    toggleGrid.addEventListener('click', () => {
+                        toggleGrid.classList.toggle('is-active');
+                        coreGrid.classList.toggle('is-active');
+                    });
+                }
             });
         </script>
 		<?php

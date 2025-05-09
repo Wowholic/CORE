@@ -5,8 +5,8 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: utility, productivity, efficiency, custom themes, development
 Requires at least: 5.6
-Tested up to: 6.7.1
-Stable tag: 1.1.0
+Tested up to: 6.8.1
+Stable tag: 1.1.1
 Requires PHP: 7.0
 
 CORE makes you faster and more efficient when developing custom WordPress sites.
@@ -39,7 +39,9 @@ CORE builds on top of Wowholic’s +5 years of experience developing fully custo
 * Add custom format options to TinyMCE *(only if Classic Editor is active)*
 * Allow removing unnecessary buttons from TinyMCE *(only if Classic Editor is active)*
 * Enable Theme Options *(only if ACF is active)*
+* Add label next to Flexible Content Layout name *(only if ACF is active)*
 * Allow shortcodes in excerpts, textareas and text fields *(only if ACF is active)*
+* Enable pretty Search URL
 * Enable `[email]` shortcode for antispam
 * Change WordPress' upload size limit
 
@@ -74,6 +76,12 @@ You can use the email shortcode in any content field that accepts shortcodes. He
 7. Grid feature & spacingjs working in the frontend
 
 == Changelog ==
+
+= 1.1.0 =
+Release Date: May 9th, 2025
+
+* Update spacing.js
+* Update description
 
 = 1.1.0 =
 Release Date: January 29th, 2025
