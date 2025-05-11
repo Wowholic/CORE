@@ -77,7 +77,7 @@ You can use the email shortcode in any content field that accepts shortcodes. He
 
 == Changelog ==
 
-= 1.1.0 =
+= 1.1.1 =
 Release Date: May 9th, 2025
 
 * Update spacing.js
