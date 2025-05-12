@@ -123,10 +123,23 @@ if ( carbon_get_theme_option( 'wowcore_encrypt_email_shortcode' ) ) {
 /**
  * Pretty Search URL
  */
+add_action( 'init', function () {
+	add_rewrite_rule(
+		'^search/(.+)/?$',
+		'index.php?s=$matches[1]',
+		'top'
+	);
+	add_rewrite_rule(
+		'^suche/(.+)/?$',
+		'index.php?s=$matches[1]',
+		'top'
+	);
+} );
+
 if ( carbon_get_theme_option( 'wowcore_encrypt_pretty_search_url' ) ) {
 	add_action( 'template_redirect', function () {
 		if ( is_search() && ! empty( $_GET['s'] ) ) {
-			wp_redirect( home_url( "/search/" ) . urlencode( get_query_var( 's' ) ) );
+			wp_redirect( home_url( __( '/search/' ) ) . urlencode( get_query_var( 's' ) ) );
 			exit();
 		}
 	} );
