@@ -11,6 +11,8 @@ add_action( 'carbon_fields_register_fields', function () {
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_disable_file_edit', __( 'Disable Theme & Plugin Editors' ) )
 		     ->set_default_value( true ),
+		Field::make( 'checkbox', 'wowcore_disable_fse', __( 'Disable Full Site Editing' ) )
+		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_disable_default_post_type', __( 'Disable default Post type' ) )
 		     ->set_default_value( true ),
 		Field::make( 'checkbox', 'wowcore_disable_comments', __( 'Disable comments' ) )
